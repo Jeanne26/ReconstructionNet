@@ -1,2 +1,8 @@
 /*/runs/*
 /*/__pycache__/*
+
+data/
+
+*.pt
+*.pth
+checkpoints/
