@@ -48,12 +48,13 @@ class ReconstructionNet(nn.Module):
 
         #rec_error = torch.cat(r_list, dim=1 ) #batch size, input dim
         #logits = nn.Softmax(dim=1)(-wre)  #batch, num_calss
-        logits = -wre 
-        probs = nn.Softmax(dim=1)(logits) # if we are gonna use crossEntropy later we need to use logits with not softmax cause ut aplies it
+        #return logits, rec_error, wre
 
+        logits = -wre 
+        probs = nn.Softmax(dim=1)(logits) # if we are gonna use crossEntropy later we need to use the errors and not the probas with softmax
         return probs, r_list, wre
 
-        #return logits, rec_error, wre
+        
 
 
 
