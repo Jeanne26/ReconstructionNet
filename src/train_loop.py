@@ -4,10 +4,28 @@ import os
 from torch.utils.data import DataLoader, TensorDataset, Subset
 import torch.optim as optim
 import torch.nn as nn
+import yaml
+import argparse
+
+#exemple pour lancer le code: python3 train_loop.py  --config config_diabetes.yaml
+
+parser = argparse.ArgumentParser()
+parser.add_argument('--config', type=str, default='config_mnist.yaml', help='Path to the config file')
+args = parser.parse_args()
+
+config_name = args.config
+print("config : ", config_name)
+CONFIG_PATH = '../configs/'
+
+def load_config(config_name):
+    with open(os.path.join(CONFIG_PATH, config_name)) as file:
+        config = yaml.safe_load(file)
+    return config
+
+config = load_config(config_name)
 
 
-
-path = os.path.join('../data/processed_data', 'mnist_processed.pt') ## Testing first with MINST but it "should" work with the rest TODO test the other datasets
+path = os.path.join(config["data_folder"], config["data_name"]) ## Testing first with MINST but it "should" work with the rest TODO test the other datasets
 data = torch.load(path)
 X_train = data['X_train']
 X_test = data['X_test']
@@ -15,8 +33,8 @@ y_train = data['y_train']
 y_test = data['y_test']
 
 
-is_image = True #!! change depending on data 
-num_classes = len(torch.unique(y_train)) 
+is_image = config["is_image"] #!! change depending on data 
+num_classes = config["num_classes"]
 if is_image:
     input_dim = X_train.shape[1:] #(c,h,w)
 else: 
@@ -39,14 +57,14 @@ def get_best_device():
     return device
 
 device = get_best_device()
-
+batch_size = config["batch_size"]
 
 train_dataset = TensorDataset(X_train, y_train)
 class_loaders = []
-for i in range(10):
+for i in range(num_classes):
     indices = (y_train == i).nonzero().squeeze() # Matching i with the classes
     subset = Subset(train_dataset, indices)
-    loader = DataLoader(subset, batch_size=64, shuffle=True)
+    loader = DataLoader(subset, batch_size=batch_size, shuffle=True)
     class_loaders.append(loader)
 
 # Now that I have loader for each class I can train each one individually first 
@@ -55,11 +73,10 @@ rec_Net = ReconstructionNet(input_dim,num_classes,is_image).to(device)# # Make s
 
 loss_fn = nn.MSELoss()
 # Same as the paper
-lr = 0.01
-weight_decay = 1e-5
+lr = config["lr"]
+weight_decay = config["weight_decay"]
 
-num_epochs = 5
-
+num_epochs = config["num_epochs"]
 for i in range(num_classes):
     model_i = rec_Net.autoencoders[i]
     model_i.train() 
@@ -86,9 +103,9 @@ for i in range(num_classes):
 loss_recNet = nn.CrossEntropyLoss()
 
 dataset = TensorDataset(X_train, y_train)
-loader_recNet = DataLoader(dataset, batch_size=64, shuffle=True)
-num_epochs_recNet = 5
-lr_recNet =0.001 #lr = 0.01 wasnt learning well got a loss of 0.3
+loader_recNet = DataLoader(dataset, batch_size=batch_size, shuffle=True)
+num_epochs_recNet = config["num_epochs_recNet"]
+lr_recNet = config["lr_recNet"] #lr = 0.01 wasnt learning well got a loss of 0.3
 
 optimizer_recNet = optim.Adam(rec_Net.parameters(), lr=lr_recNet, weight_decay=weight_decay)
 print("RecNet:")
@@ -121,7 +138,7 @@ for ep in range(num_epochs_recNet):
 # Test
 
 dataset_test = TensorDataset(X_test, y_test)
-loader_test = DataLoader(dataset_test, batch_size=64, shuffle=False)
+loader_test = DataLoader(dataset_test, batch_size=batch_size, shuffle=False)
 
 total_correct = 0
 total_samples = 0

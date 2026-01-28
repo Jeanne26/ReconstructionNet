@@ -1,0 +1,14 @@
+#data
+data_folder: ../data/processed_data
+data_name: mnist_processed.pt
+is_image: true
+
+#training
+batch_size: 64
+num_classes : 10
+lr : 0.01
+weight_decay: 0.00001 #1e-5
+num_epochs: 5
+
+num_epochs_recNet : 5
+lr_recNet : 0.001 
