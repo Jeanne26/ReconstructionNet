@@ -6,6 +6,8 @@ import torch.optim as optim
 import torch.nn as nn
 import yaml
 import argparse
+from torch.utils.tensorboard import SummaryWriter
+
 
 #exemple pour lancer le code: python3 train_loop.py  --config config_diabetes.yaml
 
@@ -23,6 +25,15 @@ def load_config(config_name):
     return config
 
 config = load_config(config_name)
+
+#log path de la forme ../logs/log_name_X
+log_name = config["log_name"]
+log_folder = config["log_folder"]
+num_file = 0
+while os.path.exists(os.path.join(log_folder, f"{log_name}_{num_file}")):
+    num_file += 1
+log_name = f"{log_name}_{num_file}"
+writer = SummaryWriter(log_dir=os.path.join(log_folder, log_name))
 
 
 path = os.path.join(config["data_folder"], config["data_name"]) ## Testing first with MINST but it "should" work with the rest TODO test the other datasets
@@ -96,6 +107,7 @@ for i in range(num_classes):
             train_loss += loss.item()
 
         avg_loss = train_loss / len(class_loaders[i])
+        writer.add_scalar(f'AE_Class_{i}/train', avg_loss, ep)
         print(f"  Epoch {ep+1}/{num_epochs} \t Loss: {avg_loss:.6f}")
 
 # Now for the big model
@@ -131,6 +143,8 @@ for ep in range(num_epochs_recNet):
 
     avg_loss = train_loss / len(loader_recNet)
     accuracy = 100 * total_correct / total_samples 
+    writer.add_scalar('RecNet/train_loss', avg_loss, ep)
+    writer.add_scalar('RecNet/train_accuracy', accuracy, ep)
     print(f"  Epoch {ep+1} \t Loss: {avg_loss:.4f} \t Acc: {accuracy:.2f}%")
 
 
@@ -155,79 +169,12 @@ with torch.no_grad():
 
 accuracy = 100 * total_correct / total_samples
 print(f"Test Accuracy: {accuracy:.2f}%")
+writer.add_scalar('RecNet/test_accuracy', accuracy)
 
-"""
-Resultat Obtenue pour MNIST:
+#sauvegarde du modele
+model_save_path = os.path.join(config["model_save_folder"], f'{config["model_save_name"]}_{num_file}.pth')
+torch.save(rec_Net.state_dict(), model_save_path)
 
-Training AutoEncoder class 0
-  Epoch 1/5      Loss: 0.049036
-  Epoch 2/5      Loss: 0.015562
-  Epoch 3/5      Loss: 0.010501
-  Epoch 4/5      Loss: 0.008525
-  Epoch 5/5      Loss: 0.007491
-Training AutoEncoder class 1
-  Epoch 1/5      Loss: 0.067508
-  Epoch 2/5      Loss: 0.065443
-  Epoch 3/5      Loss: 0.065404
-  Epoch 4/5      Loss: 0.063389
-  Epoch 5/5      Loss: 0.045867
-Training AutoEncoder class 2
-  Epoch 1/5      Loss: 0.063902
-  Epoch 2/5      Loss: 0.025484
-  Epoch 3/5      Loss: 0.015102
-  Epoch 4/5      Loss: 0.011201
-  Epoch 5/5      Loss: 0.009239
-Training AutoEncoder class 3
-  Epoch 1/5      Loss: 0.056840
-  Epoch 2/5      Loss: 0.017600
-  Epoch 3/5      Loss: 0.010665
-  Epoch 4/5      Loss: 0.008353
-  Epoch 5/5      Loss: 0.007203
-Training AutoEncoder class 4
-  Epoch 1/5      Loss: 0.056900
-  Epoch 2/5      Loss: 0.021565
-  Epoch 3/5      Loss: 0.012002
-  Epoch 4/5      Loss: 0.009014
-  Epoch 5/5      Loss: 0.007555
-Training AutoEncoder class 5
-  Epoch 1/5      Loss: 0.057272
-  Epoch 2/5      Loss: 0.022942
-  Epoch 3/5      Loss: 0.013637
-  Epoch 4/5      Loss: 0.009734
-  Epoch 5/5      Loss: 0.007745
-Training AutoEncoder class 6
-  Epoch 1/5      Loss: 0.051610
-  Epoch 2/5      Loss: 0.017728
-  Epoch 3/5      Loss: 0.010519
-  Epoch 4/5      Loss: 0.008187
-  Epoch 5/5      Loss: 0.007066
-Training AutoEncoder class 7
-  Epoch 1/5      Loss: 0.038238
-  Epoch 2/5      Loss: 0.010946
-  Epoch 3/5      Loss: 0.007304
-  Epoch 4/5      Loss: 0.005919
-  Epoch 5/5      Loss: 0.005173
-Training AutoEncoder class 8
-  Epoch 1/5      Loss: 0.059120
-  Epoch 2/5      Loss: 0.026709
-  Epoch 3/5      Loss: 0.014871
-  Epoch 4/5      Loss: 0.010990
-  Epoch 5/5      Loss: 0.009225
-Training AutoEncoder class 9
-  Epoch 1/5      Loss: 0.068492
-  Epoch 2/5      Loss: 0.035116
-  Epoch 3/5      Loss: 0.016491
-  Epoch 4/5      Loss: 0.010579
-  Epoch 5/5      Loss: 0.008356
-RecNet:
-  Epoch 1        Loss: 0.1914    Acc: 96.30%
-  Epoch 2        Loss: 0.0749    Acc: 98.17%
-  Epoch 3        Loss: 0.0518    Acc: 98.62%
-  Epoch 4        Loss: 0.0336    Acc: 99.03%
-  Epoch 5        Loss: 0.0349    Acc: 98.98%
-Test Accuracy: 97.70%
-
-"""
 
 
 
