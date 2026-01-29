@@ -36,17 +36,20 @@ def class_mse_loss(x, model, y):
     return total / N
 
 
-beta = 2.0  # diabetes
+beta = 2.0  # diabetes (dapres l'article beta = 2.0 pour diabetes apres le grid search)
 
-is_image = False #!! change depending on data
+is_image = False #change depending on data
 num_classes = len(torch.unique(y_train))
-input_dim = X_train.shape[1]  # for tabular data
+
+input_dim = X_train.shape[1] 
 dataset = TensorDataset(X_train, y_train)
-loader_recNet = DataLoader(dataset, batch_size=64, shuffle=True)
+
+loader_recNet = DataLoader(dataset, batch_size=64, shuffle=True) #essayer avec batch size 32
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
 lr_recNet =0.001
-weight_decay = 1e-5
-rec_Net = ReconstructionNet(input_dim,num_classes).to(device)# # Make sur of is_image at the top of this file !!
+weight_decay = 1e-5  #d'apres l'arcticle the lower the better
+rec_Net = ReconstructionNet(input_dim,num_classes, is_image).to(device)# # Make sur of is_image at the top of this file !!
 optimizer_recNet = optim.Adam(rec_Net.parameters(), lr=lr_recNet, weight_decay=weight_decay)
 criterion = nn.CrossEntropyLoss()
 
@@ -126,6 +129,6 @@ print("\nConfusion Matrix:\n", test_cm)
 #Test Accuracy: 0.8939
 
 #save the model 
-model_path = os.path.join('../models', 'recnet_diabetes.pt')
-torch.save(rec_Net.state_dict(), model_path)
+#model_path = os.path.join('../models', 'recnet_diabetes.pt')
+#torch.save(rec_Net.state_dict(), model_path)
 
