@@ -3,6 +3,10 @@ data_folder: ../data/processed_data
 data_name: mnist_processed.pt
 is_image: true
 
+#loss
+beta: 2 # (dapres l'article beta = 2.0 pour diabetes apres le grid search)
+
+
 #training
 batch_size: 64
 num_classes : 10
