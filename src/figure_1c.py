@@ -36,7 +36,7 @@ test_dataset = TensorDataset(X_test, y_test)
 test_loader = DataLoader(test_dataset, batch_size=batch_size, shuffle=False)
 
 #get 3 misclassified images
-num_misclassified = 3
+num_misclassified = 1
 images = {}
 recons = {}
 with torch.no_grad():
@@ -49,7 +49,7 @@ with torch.no_grad():
             pred_label = preds[i].item()
             if label != pred_label and label not in images:
                 images[label] = x[i]
-                recons[label] = r_list[y[i]]
+                recons[label] =torch.sqrt( r_list[label][pred_label]) +x[i]
             if len(images) == num_misclassified:
                 break
 
@@ -61,9 +61,11 @@ axes[0].imshow(images[0].permute(1,2,0).numpy(), cmap='gray')
 axes[0].set_title("Original Image")
 axes[0].axis('off')
 
-masked_recon = recons[0].cpu().numpy() * (recons[0].cpu().numpy() > 0.15) # thresholding the reconstruction error to visualize only the most important parts
-axes[1].imshow(masked_recon.reshape(28,28), cmap='hot')
-axes[1].set_title("Reconstruction Error (thresholded)")
+mask_recons = torch.where(recons[0]>0.015,1,0)
+
+axes[1].imshow(images[0].reshape(28,28), cmap='gray')
+axes[1].imshow(mask_recons.reshape(28,28), cmap='Set1', alpha= 0.5)
+axes[1].set_title("Reconstruction Error")
 axes[1].axis('off')
 
 plt.tight_layout()

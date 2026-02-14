@@ -73,18 +73,22 @@ with torch.no_grad():
 
 fig, axes = plt.subplots(num_classes, num_classes+1,figsize=(2*(num_classes+1), 2*num_classes))
 
-for row in range(num_classes):
+def make_figure(images_per_class,recons_per_class):
+    for row in range(num_classes):
 
-    axes[row,0].imshow(images_per_class[row].permute(1,2,0).cpu().numpy())
-    axes[row,0].set_title(f"Label {row}")
-    axes[row,0].axis('off')
+        axes[row,0].imshow(images_per_class[row].permute(1,2,0).cpu().numpy())
+        axes[row,0].set_title(f"Label {row}")
+        axes[row,0].axis('off')
 
-    for col in range(num_classes):
-        axes[row, col+1].imshow(
-            recons_per_class[row][col].permute(1,2,0).cpu().numpy())
-        axes[row,col+1].axis('off')
+        for col in range(num_classes):
+            axes[row, col+1].imshow(
+                recons_per_class[row][col].permute(1,2,0).cpu().numpy())
+            axes[row,col+1].axis('off')
 
-plt.tight_layout()
-plt.savefig("../figures/all_reconstructions_grid.png")
-plt.show()
+    plt.tight_layout()
+    plt.savefig("../figures/all_reconstructions_grid.png")
+    plt.show()
 
+
+if __name__ == "__main__":
+    make_figure(images_per_class,recons_per_class)
