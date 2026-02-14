@@ -26,7 +26,7 @@ batch_size = config["batch_size"]
 
 input_dim = X_test.shape[1:] #(c,h,w)
 
-model_weights_path = "../models/model_minst_3.pth"
+model_weights_path = "../models/model_minst_4.pth"
 model = ReconstructionNet(input_dim,num_classes,is_image)
 model.load_state_dict(torch.load(model_weights_path))
 model.eval()
@@ -61,7 +61,7 @@ with torch.no_grad():
             label = y[i].item()
             if label not in images_per_class:
                 images_per_class[label] = x[i]
-                recons_per_class[label] = [r_list[c][i] for c in range(num_classes)]
+                recons_per_class[label] = [torch.sqrt(r_list[c][i])+x[i] for c in range(num_classes)]
             if len(images_per_class) == num_classes:
                 break
 
@@ -85,6 +85,6 @@ for row in range(num_classes):
         axes[row,col+1].axis('off')
 
 plt.tight_layout()
-plt.savefig("../figures/reconstructions/all_reconstructions_grid.png")
+plt.savefig("../figures/all_reconstructions_grid.png")
 plt.show()
 
