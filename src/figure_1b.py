@@ -26,10 +26,10 @@ batch_size = config["batch_size"]
 
 input_dim = X_test.shape[1:] #(c,h,w)
 
-model_weights_path = "../models/model_minst_4.pth"
-model = ReconstructionNet(input_dim,num_classes,is_image)
-model.load_state_dict(torch.load(model_weights_path))
-model.eval()
+# model_weights_path = "../models/model_minst_4.pth"
+# model = ReconstructionNet(input_dim,num_classes,is_image)
+# model.load_state_dict(torch.load(model_weights_path))
+# model.eval()
 
 test_dataset = TensorDataset(X_test, y_test)
 test_loader = DataLoader(test_dataset, batch_size=batch_size, shuffle=False)
@@ -51,38 +51,39 @@ test_loader = DataLoader(test_dataset, batch_size=batch_size, shuffle=False)
 #         break
 
 
-images_per_class = {}
-recons_per_class = {}
-#recupuration d'une image par classe
-with torch.no_grad():
-    for x, y in test_loader:
-        probs, r_list, wre = model(x)
-        for i in range(x.size(0)):
-            label = y[i].item()
-            if label not in images_per_class:
-                images_per_class[label] = x[i]
-                recons_per_class[label] = [torch.sqrt(r_list[c][i])+x[i] for c in range(num_classes)]
-            if len(images_per_class) == num_classes:
-                break
+# images_per_class = {}
+# recons_per_class = {}
+# #recupuration d'une image par classe
+# with torch.no_grad():
+#     for x, y in test_loader:
+#         probs, r_list, wre = model(x)
+#         for i in range(x.size(0)):
+#             label = y[i].item()
+#             if label not in images_per_class:
+#                 images_per_class[label] = x[i]
+#                 recons_per_class[label] = [torch.sqrt(r_list[c][i])+x[i] for c in range(num_classes)]
+#             if len(images_per_class) == num_classes:
+#                 break
 
-        if len(images_per_class) == num_classes:
-            break
-
-
+#         if len(images_per_class) == num_classes:
+#             break
 
 
-fig, axes = plt.subplots(num_classes, num_classes+1,figsize=(2*(num_classes+1), 2*num_classes))
+
+
 
 def make_figure(images_per_class,recons_per_class):
+    fig, axes = plt.subplots(num_classes, num_classes+1,figsize=(2*(num_classes+1), 2*num_classes))
     for row in range(num_classes):
-
-        axes[row,0].imshow(images_per_class[row].permute(1,2,0).cpu().numpy())
+        image = images_per_class[row]
+        axes[row,0].imshow(image.permute(1,2,0).cpu().numpy())
         axes[row,0].set_title(f"Label {row}")
         axes[row,0].axis('off')
 
         for col in range(num_classes):
+            recons = recons_per_class[row][col]
             axes[row, col+1].imshow(
-                recons_per_class[row][col].permute(1,2,0).cpu().numpy())
+                recons.permute(1,2,0).cpu().numpy())
             axes[row,col+1].axis('off')
 
     plt.tight_layout()

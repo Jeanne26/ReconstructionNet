@@ -47,23 +47,26 @@ X_test = data['X_test']
 y_train = data['y_train']
 y_test = data['y_test']
 
-def class_mse_loss(x, model, y):
+def class_mse_loss(x, r_list, y, num_class):
     total = 0.0
     N = x.size(0)
 
-    for j in range(model.num_class):
+    for j in range(num_class):
         mask = (y == j)
         if mask.sum() == 0:
             continue
 
         x_j = x[mask]
-        recon_j = model.autoencoders[j](x_j)
+        recon_j = r_list[j][mask]
+        x_j = x[mask]
+        
 
         mse_j = torch.mean((recon_j - x_j) ** 2)
         total += mask.sum() * mse_j
 
     return total / N
 
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 beta = config["beta"]
 is_image = config["is_image"]
@@ -78,12 +81,24 @@ if is_image:
 else: 
     input_dim = X_train.shape[1]
 dataset = TensorDataset(X_train, y_train)
-
 loader_recNet = DataLoader(dataset, batch_size=batch_size, shuffle=True) #essayer avec batch size 32
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 rec_Net = ReconstructionNet(input_dim,num_classes, is_image).to(device)# # Make sur of is_image at the top of this file !!
-optimizer_recNet = optim.Adam(rec_Net.parameters(), lr=lr_recNet, weight_decay=weight_decay)
+# optimizer_recNet = optim.Adam(rec_Net.parameters(), lr=lr_recNet, weight_decay=weight_decay)
+
+#def des optimizers on separe pour les poids et les autoencodeurs pour pouvoir faire des pas de descente differents
+#cas image
+if is_image:
+    ae_params = list(rec_Net.encoder.parameters()) + list(rec_Net.decoders.parameters())
+    optimizer_ae = torch.optim.Adam(ae_params, lr=lr_recNet)
+#cas tabulaire    
+else : 
+    ae_params = []
+    for ae in rec_Net.autoencoders:
+        ae_params += list(ae.parameters())
+
+    optimizer_ae = torch.optim.Adam(ae_params, lr=lr_recNet)
+optimizer_weights = torch.optim.Adam([rec_Net.weights], lr=lr_recNet)
 criterion = nn.CrossEntropyLoss()
 
 test_dataset = TensorDataset(X_test, y_test)
@@ -139,7 +154,8 @@ def evaluate_recnet(model, dataloader, device, step,plot_grid = False):
             x = images_per_class[y]
             x = x.to(device)
             probs,r_list,wre = model(x)
-            recons_per_class[y] = [torch.sqrt(r_list[c].cpu().detach())+x.cpu() for c in range(num_classes)]
+            #dans model modif r_list contient plus les erreurs de reconstruction mais directement les image reconstruites
+            recons_per_class[y] = [r_list[c].cpu().detach() for c in range(num_classes)]
         make_figure(images_per_class,recons_per_class)
         fig = plt.gcf()
         writer.add_figure('RecNet/reconstructions_grid', fig, global_step=step)
@@ -155,22 +171,23 @@ for ep in range(num_epochs_recNet):
     train_loss = 0.0
     total_correct = 0
     total_samples = 0
-
     for batch, labels in loader_recNet:
         batch = batch.to(device)
         labels = labels.to(device)
 
-        optimizer_recNet.zero_grad()
+        optimizer_ae.zero_grad()
+        optimizer_weights.zero_grad()
 
-        _, _, wre = rec_Net(batch)
-        logits = (-wre)
+        logits, r_list, wre = rec_Net(batch)
 
         ce_loss = criterion(logits, labels)
-        mse_loss = class_mse_loss(batch, rec_Net, labels)
+        mse_loss = class_mse_loss(batch, r_list, labels, num_classes)
 
         loss = ce_loss + beta * mse_loss
         loss.backward()
-        optimizer_recNet.step()
+    
+        optimizer_ae.step()
+        optimizer_weights.step()
 
         train_loss += loss.item()
 
@@ -180,7 +197,6 @@ for ep in range(num_epochs_recNet):
 
     avg_loss = train_loss / len(loader_recNet)
     accuracy = 100 * total_correct / total_samples
-    
     writer.add_scalar('RecNet/train_loss', avg_loss, ep)
     writer.add_scalar('RecNet/train_accuracy', accuracy, ep)
     
@@ -189,6 +205,8 @@ for ep in range(num_epochs_recNet):
     
     test_acc, test_report, test_cm = evaluate_recnet(rec_Net, test_loader, device,step =ep, plot_grid=True)
     writer.add_scalar('RecNet/test_accuracy_epoch', test_acc, ep)
+    
+    
     
 
 
@@ -201,7 +219,6 @@ writer.add_scalar('RecNet/test_accuracy', test_acc)
 writer.add_text('RecNet/classification_report', test_report)
 writer.add_text('RecNet/confusion_matrix', str(test_cm))
 
-print("  ")
 
 
 #Test Accuracy: 0.8939
