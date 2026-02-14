@@ -39,11 +39,18 @@ writer = SummaryWriter(log_dir=os.path.join(log_folder, log_name))
 
 
 path = os.path.join(config["data_folder"], config["data_name"])
-data = torch.load(path)
+data = torch.load(path, weights_only=False) # ADDED HERE weights_only = false because an error was occuring with the newer version where it put it by default to True
 X_train = data['X_train']
 X_test = data['X_test']
 y_train = data['y_train']
 y_test = data['y_test']
+
+# Convert numpy arrays to tensors if needed
+if not isinstance(X_train, torch.Tensor):
+    X_train = torch.from_numpy(X_train).float() / 255.0
+    X_test = torch.from_numpy(X_test).float() / 255.0
+    y_train = torch.from_numpy(y_train).long().squeeze()
+    y_test = torch.from_numpy(y_test).long().squeeze()
 
 def class_mse_loss(x, model, y):
     total = 0.0
