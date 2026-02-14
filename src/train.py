@@ -9,6 +9,8 @@ import numpy as np
 import yaml
 import argparse
 from torch.utils.tensorboard import SummaryWriter
+from figure_1b import make_figure
+import matplotlib.pyplot as plt
 
 
 #exemple pour lancer le code: python3 train_test_diabetes.py  --config config_diabetes.yaml
@@ -39,18 +41,11 @@ writer = SummaryWriter(log_dir=os.path.join(log_folder, log_name))
 
 
 path = os.path.join(config["data_folder"], config["data_name"])
-data = torch.load(path, weights_only=False) # ADDED HERE weights_only = false because an error was occuring with the newer version where it put it by default to True
+data = torch.load(path)
 X_train = data['X_train']
 X_test = data['X_test']
 y_train = data['y_train']
 y_test = data['y_test']
-
-# Convert numpy arrays to tensors if needed
-if not isinstance(X_train, torch.Tensor):
-    X_train = torch.from_numpy(X_train).float() / 255.0
-    X_test = torch.from_numpy(X_test).float() / 255.0
-    y_train = torch.from_numpy(y_train).long().squeeze()
-    y_test = torch.from_numpy(y_test).long().squeeze()
 
 def class_mse_loss(x, model, y):
     total = 0.0
@@ -91,7 +86,69 @@ rec_Net = ReconstructionNet(input_dim,num_classes, is_image).to(device)# # Make 
 optimizer_recNet = optim.Adam(rec_Net.parameters(), lr=lr_recNet, weight_decay=weight_decay)
 criterion = nn.CrossEntropyLoss()
 
-print(f"NUM EPOCHS {num_epochs_recNet}")
+test_dataset = TensorDataset(X_test, y_test)
+test_loader = DataLoader(test_dataset, batch_size=batch_size, shuffle=False)
+
+
+
+#test 
+def get_images(test_loader):
+    #recupere pour chaque classe une instace dans le data loader pour qu'on puisse tracker l'evolution
+    images_per_class = {}
+    with torch.no_grad():
+        for x, y in test_loader:
+            for i in range(x.size(0)):
+                label = y[i].item()
+                if label not in images_per_class:
+                    images_per_class[label] = x[i]
+                if len(images_per_class) == num_classes:
+                    break
+
+            if len(images_per_class) == num_classes:
+                break
+    return images_per_class
+
+images_per_class = get_images(test_loader=test_loader)
+
+def evaluate_recnet(model, dataloader, device, step,plot_grid = False):
+    model.eval()
+    all_preds = []
+    all_labels = []
+
+    with torch.no_grad():
+        for x, y in dataloader:
+            x = x.to(device)
+            y = y.to(device)
+
+            logits, _, _ = model(x)
+            preds = torch.argmax(logits, dim=1)
+
+            all_preds.append(preds)
+            all_labels.append(y)
+
+    all_preds = torch.cat(all_preds).cpu().numpy()
+    all_labels = torch.cat(all_labels).cpu().numpy()
+
+    acc = accuracy_score(all_labels, all_preds)
+    report = classification_report(all_labels, all_preds)
+    cm = confusion_matrix(all_labels, all_preds)
+    
+    if plot_grid and is_image:
+        recons_per_class = {}
+        for y in images_per_class.keys():
+            x = images_per_class[y]
+            x = x.to(device)
+            probs,r_list,wre = model(x)
+            recons_per_class[y] = [torch.sqrt(r_list[c].cpu().detach())+x.cpu() for c in range(num_classes)]
+        make_figure(images_per_class,recons_per_class)
+        fig = plt.gcf()
+        writer.add_figure('RecNet/reconstructions_grid', fig, global_step=step)
+        plt.close(fig)
+
+    return acc, report, cm
+
+
+
 
 for ep in range(num_epochs_recNet):
     rec_Net.train()
@@ -128,40 +185,14 @@ for ep in range(num_epochs_recNet):
     writer.add_scalar('RecNet/train_accuracy', accuracy, ep)
     
     print(f"Epoch {ep+1:02d} | Loss: {avg_loss:.4f} | Acc: {accuracy:.2f}%")
+    
+    
+    test_acc, test_report, test_cm = evaluate_recnet(rec_Net, test_loader, device,step =ep, plot_grid=True)
+    writer.add_scalar('RecNet/test_accuracy_epoch', test_acc, ep)
+    
 
 
-#test 
 
-def evaluate_recnet(model, dataloader, device):
-    model.eval()
-    all_preds = []
-    all_labels = []
-
-    with torch.no_grad():
-        for x, y in dataloader:
-            x = x.to(device)
-            y = y.to(device)
-
-            logits, _, _ = model(x)
-            preds = torch.argmax(logits, dim=1)
-
-            all_preds.append(preds)
-            all_labels.append(y)
-
-    all_preds = torch.cat(all_preds).cpu().numpy()
-    all_labels = torch.cat(all_labels).cpu().numpy()
-
-    acc = accuracy_score(all_labels, all_preds)
-    report = classification_report(all_labels, all_preds)
-    cm = confusion_matrix(all_labels, all_preds)
-
-    return acc, report, cm
-
-
-test_dataset = TensorDataset(X_test, y_test)
-test_loader = DataLoader(test_dataset, batch_size=batch_size, shuffle=False)
-
-test_acc, test_report, test_cm = evaluate_recnet(rec_Net, test_loader, device)
 
 print("Test Accuracy:", test_acc)
 print("\nClassification Report:\n", test_report)
