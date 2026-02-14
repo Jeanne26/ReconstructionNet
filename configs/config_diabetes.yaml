@@ -3,14 +3,17 @@ data_folder: ../data/processed_data
 data_name: diabetes_processed.pt
 is_image: false
 
+#loss
+beta: 2 # (dapres l'article beta = 2.0 pour diabetes apres le grid search)
+
 #training
 batch_size: 64
 num_classes : 2
 lr : 0.01
-weight_decay: 0.00001 #1e-5
+weight_decay: 0.00001 #1e-5  d'apres l'arcticle the lower the better
 num_epochs: 5
 
-num_epochs_recNet : 5
+num_epochs_recNet : 100
 lr_recNet : 0.001 
 
 
