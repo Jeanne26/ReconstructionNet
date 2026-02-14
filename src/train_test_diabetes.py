@@ -84,6 +84,7 @@ rec_Net = ReconstructionNet(input_dim,num_classes, is_image).to(device)# # Make 
 optimizer_recNet = optim.Adam(rec_Net.parameters(), lr=lr_recNet, weight_decay=weight_decay)
 criterion = nn.CrossEntropyLoss()
 
+print(f"NUM EPOCHS {num_epochs_recNet}")
 
 for ep in range(num_epochs_recNet):
     rec_Net.train()
