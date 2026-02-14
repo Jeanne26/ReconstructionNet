@@ -170,6 +170,7 @@ writer.add_scalar('RecNet/test_accuracy', test_acc)
 writer.add_text('RecNet/classification_report', test_report)
 writer.add_text('RecNet/confusion_matrix', str(test_cm))
 
+print("  ")
 
 
 #Test Accuracy: 0.8939
