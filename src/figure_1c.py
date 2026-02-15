@@ -33,58 +33,61 @@ model.load_state_dict(torch.load(model_weights_path, map_location=torch.device('
 model.eval()
 
 test_dataset = TensorDataset(X_test, y_test)
-test_loader = DataLoader(test_dataset, batch_size=1, shuffle=True)
 
-#get 3 misclassified images
-num_misclassified = 3
-images = []
+num_misclassified = 3  
+num_iterations = 20    
 
+for iteration in range(num_iterations):
+    
+    test_loader = DataLoader(test_dataset, batch_size=1, shuffle=True)
+    
+    images = []
 # recons = {}
-with torch.no_grad():
-    for x, y in test_loader:
-        
-        probs, r_list, wre = model(x)
-        
-        preds = torch.argmax(probs, dim=1)
+    with torch.no_grad():
+        for x, y in test_loader:
+            
+            probs, r_list, wre = model(x)
+            
+            preds = torch.argmax(probs, dim=1)
 
-            
-        label = y[0].item()
-        pred_label = preds[0].item()
+                
+            label = y[0].item()
+            pred_label = preds[0].item()
 
-        if label != pred_label:
-            # Compute weighted reconstruction error per the paper (Definition 5)
-            reconstruction = r_list[pred_label][0]
-            original = x[0]
-            
-            # Squared reconstruction error per pixel (Equation 4)
-            squared_error = (reconstruction - original) ** 2
-            
-            # Get learned weights for predicted class
-            error_weights = model.weights[pred_label].view_as(squared_error)
-            
-            # Weighted reconstruction error (Definition 5)
-            weighted_rec_err = error_weights * squared_error
-            
-            dico = {"label": label, 
-                    "pred_label": pred_label, 
-                    "recons_label": r_list[label], 
-                    "recons_pred": r_list[pred_label],
-                    "weighted_rec_err":weighted_rec_err,
-                    "image": x[0] }
-            images.append(dico)
+            if label != pred_label:
+                # Compute weighted reconstruction error per the paper (Definition 5)
+                reconstruction = r_list[pred_label][0]
+                original = x[0]
+                
+                # Squared reconstruction error per pixel (Equation 4)
+                squared_error = (reconstruction - original) ** 2
+                
+                # Get learned weights for predicted class
+                error_weights = model.weights[pred_label].view_as(squared_error)
+                
+                # Weighted reconstruction error (Definition 5)
+                weighted_rec_err = error_weights * squared_error
+                
+                dico = {"label": label, 
+                        "pred_label": pred_label, 
+                        "recons_label": r_list[label], 
+                        "recons_pred": r_list[pred_label],
+                        "weighted_rec_err":weighted_rec_err,
+                        "image": x[0] }
+                images.append(dico)
+                if len(images) == num_misclassified:
+                    break
+
             if len(images) == num_misclassified:
                 break
+    
 
-        if len(images) == num_misclassified:
-            break
-   
-
- 
-fig, axes = plt.subplots(len(images),4,figsize=(12, 5*len(images)))
+    
+    fig, axes = plt.subplots(len(images),4,figsize=(12, 5*len(images)))
 
 
-ERROR_THRESHOLD = 0.5  
-for j in range(20):
+    ERROR_THRESHOLD = 0.5  
+
     for i in range(len(images)):
         label= images[i]["label"]
         pred_label= images[i]["pred_label"]
@@ -121,4 +124,4 @@ for j in range(20):
         axes[i,3].axis('off')
         
     plt.tight_layout()
-    plt.savefig(f"../figures/test{j}_expl_mnist9_with_threshold0_5.png")
+    plt.savefig(f"../figures/test{iteration}_expl_mnist9_with_threshold0_5.png")
