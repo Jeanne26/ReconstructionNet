@@ -78,10 +78,11 @@ if __name__ == "__main__":
     # process_experiments("mnist")
 
     # process_experiments("octmnist")
-
+    process_experiments("diabetes")
     mnist_results = process_prefix("mnist")
     octmnist_results = process_prefix("octmnist")
-    results_df = pd.DataFrame([mnist_results, octmnist_results])
+    diabetes_results = process_prefix("diabetes")
+    results_df = pd.DataFrame([mnist_results, octmnist_results, diabetes_results])
     print("here")
     results_df.to_csv(OUTPUT_SUMMARY, index=False)
 

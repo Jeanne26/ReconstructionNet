@@ -1,0 +1,58 @@
+config :  config_diabetes.yaml
+numm_epochs :  40
+Epoch 01 | Loss: 0.6279 | Acc: 84.28%
+Epoch 02 | Loss: 0.4713 | Acc: 87.42%
+Epoch 03 | Loss: 0.4356 | Acc: 87.75%
+Epoch 04 | Loss: 0.4170 | Acc: 87.99%
+Epoch 05 | Loss: 0.4065 | Acc: 88.05%
+Epoch 06 | Loss: 0.3998 | Acc: 88.13%
+Epoch 07 | Loss: 0.3957 | Acc: 88.15%
+Epoch 08 | Loss: 0.3927 | Acc: 88.17%
+Epoch 09 | Loss: 0.3904 | Acc: 88.13%
+Epoch 10 | Loss: 0.3888 | Acc: 88.21%
+Epoch 11 | Loss: 0.3873 | Acc: 88.24%
+Epoch 12 | Loss: 0.3862 | Acc: 88.22%
+Epoch 13 | Loss: 0.3857 | Acc: 88.23%
+Epoch 14 | Loss: 0.3846 | Acc: 88.25%
+Epoch 15 | Loss: 0.3840 | Acc: 88.27%
+Epoch 16 | Loss: 0.3837 | Acc: 88.25%
+Epoch 17 | Loss: 0.3830 | Acc: 88.31%
+Epoch 18 | Loss: 0.3827 | Acc: 88.29%
+Epoch 19 | Loss: 0.3825 | Acc: 88.30%
+Epoch 20 | Loss: 0.3820 | Acc: 88.29%
+Epoch 21 | Loss: 0.3818 | Acc: 88.28%
+Epoch 22 | Loss: 0.3817 | Acc: 88.28%
+Epoch 23 | Loss: 0.3814 | Acc: 88.31%
+Epoch 24 | Loss: 0.3813 | Acc: 88.29%
+Epoch 25 | Loss: 0.3812 | Acc: 88.32%
+Epoch 26 | Loss: 0.3812 | Acc: 88.30%
+Epoch 27 | Loss: 0.3809 | Acc: 88.32%
+Epoch 28 | Loss: 0.3809 | Acc: 88.31%
+Epoch 29 | Loss: 0.3808 | Acc: 88.31%
+Epoch 30 | Loss: 0.3806 | Acc: 88.33%
+Epoch 31 | Loss: 0.3805 | Acc: 88.34%
+Epoch 32 | Loss: 0.3804 | Acc: 88.33%
+Epoch 33 | Loss: 0.3803 | Acc: 88.32%
+Epoch 34 | Loss: 0.3802 | Acc: 88.33%
+Epoch 35 | Loss: 0.3803 | Acc: 88.31%
+Epoch 36 | Loss: 0.3802 | Acc: 88.32%
+Epoch 37 | Loss: 0.3800 | Acc: 88.31%
+Epoch 38 | Loss: 0.3801 | Acc: 88.36%
+Epoch 39 | Loss: 0.3800 | Acc: 88.33%
+Epoch 40 | Loss: 0.3799 | Acc: 88.37%
+Test Accuracy: 0.9002
+
+Classification Report:
+               precision    recall  f1-score   support
+
+           0       0.99      0.90      0.94      9150
+           1       0.45      0.88      0.60       850
+
+    accuracy                           0.90     10000
+   macro avg       0.72      0.89      0.77     10000
+weighted avg       0.94      0.90      0.91     10000
+
+
+Confusion Matrix:
+ [[8255  895]
+ [ 103  747]]
