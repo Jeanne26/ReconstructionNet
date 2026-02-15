@@ -1,0 +1,61 @@
+config :  config_octmnist.yaml
+Epoch 01 | Loss: 1.8830 | Acc: 56.78%
+Epoch 02 | Loss: 1.1340 | Acc: 65.62%
+Epoch 03 | Loss: 1.0112 | Acc: 70.07%
+Epoch 04 | Loss: 0.9157 | Acc: 72.85%
+Epoch 05 | Loss: 0.8370 | Acc: 75.05%
+Epoch 06 | Loss: 0.7651 | Acc: 76.96%
+Epoch 07 | Loss: 0.6991 | Acc: 78.98%
+Epoch 08 | Loss: 0.6436 | Acc: 80.64%
+Epoch 09 | Loss: 0.6017 | Acc: 81.76%
+Epoch 10 | Loss: 0.5642 | Acc: 82.80%
+Epoch 11 | Loss: 0.5347 | Acc: 83.75%
+Epoch 12 | Loss: 0.5099 | Acc: 84.42%
+Epoch 13 | Loss: 0.4856 | Acc: 85.19%
+Epoch 14 | Loss: 0.4671 | Acc: 85.69%
+Epoch 15 | Loss: 0.4507 | Acc: 86.21%
+Epoch 16 | Loss: 0.4324 | Acc: 86.86%
+Epoch 17 | Loss: 0.4209 | Acc: 87.23%
+Epoch 18 | Loss: 0.4064 | Acc: 87.66%
+Epoch 19 | Loss: 0.3928 | Acc: 88.05%
+Epoch 20 | Loss: 0.3799 | Acc: 88.44%
+Epoch 21 | Loss: 0.3691 | Acc: 89.02%
+Epoch 22 | Loss: 0.3562 | Acc: 89.39%
+Epoch 23 | Loss: 0.3449 | Acc: 89.82%
+Epoch 24 | Loss: 0.3342 | Acc: 90.03%
+Epoch 25 | Loss: 0.3233 | Acc: 90.44%
+Epoch 26 | Loss: 0.3121 | Acc: 90.81%
+Epoch 27 | Loss: 0.3032 | Acc: 91.22%
+Epoch 28 | Loss: 0.2912 | Acc: 91.63%
+Epoch 29 | Loss: 0.2864 | Acc: 91.73%
+Epoch 30 | Loss: 0.2746 | Acc: 92.21%
+Epoch 31 | Loss: 0.2649 | Acc: 92.51%
+Epoch 32 | Loss: 0.2550 | Acc: 92.88%
+Epoch 33 | Loss: 0.2490 | Acc: 93.11%
+Epoch 34 | Loss: 0.2391 | Acc: 93.49%
+Epoch 35 | Loss: 0.2362 | Acc: 93.57%
+Epoch 36 | Loss: 0.2222 | Acc: 94.10%
+Epoch 37 | Loss: 0.2192 | Acc: 94.24%
+Epoch 38 | Loss: 0.2110 | Acc: 94.58%
+Epoch 39 | Loss: 0.2035 | Acc: 94.78%
+Epoch 40 | Loss: 0.1965 | Acc: 95.13%
+Test Accuracy: 0.636
+
+Classification Report:
+               precision    recall  f1-score   support
+
+           0       0.58      0.84      0.69       250
+           1       0.77      0.60      0.68       250
+           2       0.67      0.20      0.31       250
+           3       0.62      0.90      0.73       250
+
+    accuracy                           0.64      1000
+   macro avg       0.66      0.64      0.60      1000
+weighted avg       0.66      0.64      0.60      1000
+
+
+Confusion Matrix:
+ [[210  24   8   8]
+ [ 62 151   8  29]
+ [ 83  14  50 103]
+ [  8   8   9 225]]

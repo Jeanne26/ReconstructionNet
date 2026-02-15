@@ -14,7 +14,7 @@ lr : 0.01
 weight_decay: 0.00001 #1e-5
 num_epochs: 20
 
-num_epochs_recNet : 5
+num_epochs_recNet : 40
 lr_recNet : 0.001 
 
 #sauvegarde

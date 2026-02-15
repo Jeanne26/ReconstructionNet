@@ -1,0 +1,61 @@
+config :  config_octmnist.yaml
+Epoch 01 | Loss: 1.4030 | Acc: 62.05%
+Epoch 02 | Loss: 0.9896 | Acc: 73.38%
+Epoch 03 | Loss: 0.8711 | Acc: 77.12%
+Epoch 04 | Loss: 0.8042 | Acc: 78.82%
+Epoch 05 | Loss: 0.7357 | Acc: 80.39%
+Epoch 06 | Loss: 0.6695 | Acc: 81.41%
+Epoch 07 | Loss: 0.6141 | Acc: 82.33%
+Epoch 08 | Loss: 0.5776 | Acc: 82.90%
+Epoch 09 | Loss: 0.5443 | Acc: 83.57%
+Epoch 10 | Loss: 0.5231 | Acc: 84.25%
+Epoch 11 | Loss: 0.5030 | Acc: 84.68%
+Epoch 12 | Loss: 0.4820 | Acc: 85.29%
+Epoch 13 | Loss: 0.4637 | Acc: 85.64%
+Epoch 14 | Loss: 0.4462 | Acc: 86.21%
+Epoch 15 | Loss: 0.4348 | Acc: 86.64%
+Epoch 16 | Loss: 0.4158 | Acc: 87.29%
+Epoch 17 | Loss: 0.4030 | Acc: 87.65%
+Epoch 18 | Loss: 0.3898 | Acc: 88.14%
+Epoch 19 | Loss: 0.3788 | Acc: 88.44%
+Epoch 20 | Loss: 0.3668 | Acc: 88.87%
+Epoch 21 | Loss: 0.3531 | Acc: 89.37%
+Epoch 22 | Loss: 0.3439 | Acc: 89.70%
+Epoch 23 | Loss: 0.3351 | Acc: 90.05%
+Epoch 24 | Loss: 0.3217 | Acc: 90.42%
+Epoch 25 | Loss: 0.3127 | Acc: 90.69%
+Epoch 26 | Loss: 0.3040 | Acc: 91.07%
+Epoch 27 | Loss: 0.2972 | Acc: 91.35%
+Epoch 28 | Loss: 0.2829 | Acc: 91.80%
+Epoch 29 | Loss: 0.2767 | Acc: 91.96%
+Epoch 30 | Loss: 0.2644 | Acc: 92.37%
+Epoch 31 | Loss: 0.2596 | Acc: 92.60%
+Epoch 32 | Loss: 0.2504 | Acc: 92.97%
+Epoch 33 | Loss: 0.2422 | Acc: 93.30%
+Epoch 34 | Loss: 0.2328 | Acc: 93.61%
+Epoch 35 | Loss: 0.2257 | Acc: 93.87%
+Epoch 36 | Loss: 0.2209 | Acc: 94.15%
+Epoch 37 | Loss: 0.2083 | Acc: 94.57%
+Epoch 38 | Loss: 0.2039 | Acc: 94.72%
+Epoch 39 | Loss: 0.1982 | Acc: 94.95%
+Epoch 40 | Loss: 0.1911 | Acc: 95.18%
+Test Accuracy: 0.62
+
+Classification Report:
+               precision    recall  f1-score   support
+
+           0       0.55      0.92      0.69       250
+           1       0.80      0.56      0.66       250
+           2       0.63      0.13      0.22       250
+           3       0.61      0.88      0.72       250
+
+    accuracy                           0.62      1000
+   macro avg       0.65      0.62      0.57      1000
+weighted avg       0.65      0.62      0.57      1000
+
+
+Confusion Matrix:
+ [[229  14   0   7]
+ [ 76 139   5  30]
+ [ 99  15  33 103]
+ [ 12   5  14 219]]
