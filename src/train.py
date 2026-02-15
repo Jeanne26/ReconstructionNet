@@ -140,7 +140,10 @@ def evaluate_recnet(model, dataloader, device, step,plot_grid = False):
     all_probs = torch.cat(all_probs).cpu().numpy()
 
     acc = accuracy_score(all_labels, all_preds)
-    auc = roc_auc_score(all_labels, all_probs, multi_class='ovr')
+    if num_classes == 2:
+        auc = roc_auc_score(all_labels, all_probs[:, 1])
+    else:
+        auc = roc_auc_score(all_labels, all_probs, multi_class='ovr')
     report = classification_report(all_labels, all_preds)
     cm = confusion_matrix(all_labels, all_preds)
     
