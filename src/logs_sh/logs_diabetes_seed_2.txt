@@ -1,0 +1,58 @@
+config :  config_diabetes.yaml
+numm_epochs :  40
+Epoch 01 | Loss: 0.5583 | Acc: 84.06%
+Epoch 02 | Loss: 0.3739 | Acc: 88.70%
+Epoch 03 | Loss: 0.3594 | Acc: 88.86%
+Epoch 04 | Loss: 0.3485 | Acc: 89.02%
+Epoch 05 | Loss: 0.3390 | Acc: 89.06%
+Epoch 06 | Loss: 0.3320 | Acc: 89.19%
+Epoch 07 | Loss: 0.3267 | Acc: 89.31%
+Epoch 08 | Loss: 0.3222 | Acc: 89.44%
+Epoch 09 | Loss: 0.3191 | Acc: 89.55%
+Epoch 10 | Loss: 0.3167 | Acc: 89.49%
+Epoch 11 | Loss: 0.3147 | Acc: 89.58%
+Epoch 12 | Loss: 0.3130 | Acc: 89.60%
+Epoch 13 | Loss: 0.3112 | Acc: 89.58%
+Epoch 14 | Loss: 0.3097 | Acc: 89.67%
+Epoch 15 | Loss: 0.3083 | Acc: 89.64%
+Epoch 16 | Loss: 0.3073 | Acc: 89.70%
+Epoch 17 | Loss: 0.3066 | Acc: 89.74%
+Epoch 18 | Loss: 0.3058 | Acc: 89.77%
+Epoch 19 | Loss: 0.3053 | Acc: 89.75%
+Epoch 20 | Loss: 0.3050 | Acc: 89.78%
+Epoch 21 | Loss: 0.3045 | Acc: 89.82%
+Epoch 22 | Loss: 0.3042 | Acc: 89.80%
+Epoch 23 | Loss: 0.3039 | Acc: 89.87%
+Epoch 24 | Loss: 0.3038 | Acc: 89.78%
+Epoch 25 | Loss: 0.3034 | Acc: 89.77%
+Epoch 26 | Loss: 0.3034 | Acc: 89.82%
+Epoch 27 | Loss: 0.3034 | Acc: 89.83%
+Epoch 28 | Loss: 0.3030 | Acc: 89.86%
+Epoch 29 | Loss: 0.3029 | Acc: 89.86%
+Epoch 30 | Loss: 0.3024 | Acc: 89.86%
+Epoch 31 | Loss: 0.3023 | Acc: 89.90%
+Epoch 32 | Loss: 0.3022 | Acc: 89.91%
+Epoch 33 | Loss: 0.3021 | Acc: 89.88%
+Epoch 34 | Loss: 0.3018 | Acc: 89.91%
+Epoch 35 | Loss: 0.3018 | Acc: 89.90%
+Epoch 36 | Loss: 0.3015 | Acc: 89.90%
+Epoch 37 | Loss: 0.3012 | Acc: 89.93%
+Epoch 38 | Loss: 0.3011 | Acc: 89.88%
+Epoch 39 | Loss: 0.3009 | Acc: 89.92%
+Epoch 40 | Loss: 0.3006 | Acc: 89.96%
+Test Accuracy: 0.8857
+
+Classification Report:
+               precision    recall  f1-score   support
+
+           0       0.99      0.88      0.93      9150
+           1       0.42      0.93      0.58       850
+
+    accuracy                           0.89     10000
+   macro avg       0.71      0.91      0.76     10000
+weighted avg       0.94      0.89      0.90     10000
+
+
+Confusion Matrix:
+ [[8066 1084]
+ [  59  791]]

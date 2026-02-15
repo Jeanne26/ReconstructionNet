@@ -1,0 +1,58 @@
+config :  config_diabetes.yaml
+numm_epochs :  40
+Epoch 01 | Loss: 0.5201 | Acc: 85.84%
+Epoch 02 | Loss: 0.3651 | Acc: 88.86%
+Epoch 03 | Loss: 0.3455 | Acc: 89.21%
+Epoch 04 | Loss: 0.3335 | Acc: 89.45%
+Epoch 05 | Loss: 0.3255 | Acc: 89.86%
+Epoch 06 | Loss: 0.3193 | Acc: 90.08%
+Epoch 07 | Loss: 0.3141 | Acc: 90.22%
+Epoch 08 | Loss: 0.3073 | Acc: 90.42%
+Epoch 09 | Loss: 0.3012 | Acc: 90.53%
+Epoch 10 | Loss: 0.2977 | Acc: 90.62%
+Epoch 11 | Loss: 0.2951 | Acc: 90.70%
+Epoch 12 | Loss: 0.2926 | Acc: 90.70%
+Epoch 13 | Loss: 0.2921 | Acc: 90.73%
+Epoch 14 | Loss: 0.2910 | Acc: 90.78%
+Epoch 15 | Loss: 0.2909 | Acc: 90.75%
+Epoch 16 | Loss: 0.2906 | Acc: 90.78%
+Epoch 17 | Loss: 0.2899 | Acc: 90.76%
+Epoch 18 | Loss: 0.2900 | Acc: 90.79%
+Epoch 19 | Loss: 0.2899 | Acc: 90.81%
+Epoch 20 | Loss: 0.2894 | Acc: 90.79%
+Epoch 21 | Loss: 0.2900 | Acc: 90.75%
+Epoch 22 | Loss: 0.2891 | Acc: 90.80%
+Epoch 23 | Loss: 0.2884 | Acc: 90.83%
+Epoch 24 | Loss: 0.2891 | Acc: 90.79%
+Epoch 25 | Loss: 0.2886 | Acc: 90.81%
+Epoch 26 | Loss: 0.2883 | Acc: 90.81%
+Epoch 27 | Loss: 0.2877 | Acc: 90.88%
+Epoch 28 | Loss: 0.2881 | Acc: 90.80%
+Epoch 29 | Loss: 0.2873 | Acc: 90.87%
+Epoch 30 | Loss: 0.2884 | Acc: 90.88%
+Epoch 31 | Loss: 0.2878 | Acc: 90.83%
+Epoch 32 | Loss: 0.2880 | Acc: 90.87%
+Epoch 33 | Loss: 0.2874 | Acc: 90.83%
+Epoch 34 | Loss: 0.2883 | Acc: 90.83%
+Epoch 35 | Loss: 0.2869 | Acc: 90.89%
+Epoch 36 | Loss: 0.2869 | Acc: 90.84%
+Epoch 37 | Loss: 0.2873 | Acc: 90.85%
+Epoch 38 | Loss: 0.2863 | Acc: 90.91%
+Epoch 39 | Loss: 0.2862 | Acc: 90.87%
+Epoch 40 | Loss: 0.2851 | Acc: 90.88%
+Test Accuracy: 0.9101
+
+Classification Report:
+               precision    recall  f1-score   support
+
+           0       0.99      0.91      0.95      9150
+           1       0.48      0.91      0.63       850
+
+    accuracy                           0.91     10000
+   macro avg       0.74      0.91      0.79     10000
+weighted avg       0.95      0.91      0.92     10000
+
+
+Confusion Matrix:
+ [[8329  821]
+ [  78  772]]

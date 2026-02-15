@@ -5,34 +5,34 @@ import matplotlib.pyplot as plt
 import yaml
 from torch.utils.data import DataLoader, TensorDataset
 
-config_name = "config_mnist.yaml"
-CONFIG_PATH = '../configs/'
+# config_name = "config_mnist.yaml"
+# CONFIG_PATH = '../configs/'
 
-def load_config(config_name):
-    with open(os.path.join(CONFIG_PATH, config_name)) as file:
-        config = yaml.safe_load(file)
-    return config
+# def load_config(config_name):
+#     with open(os.path.join(CONFIG_PATH, config_name)) as file:
+#         config = yaml.safe_load(file)
+#     return config
 
-config = load_config(config_name)
+# config = load_config(config_name)
 
-path = os.path.join(config["data_folder"], config["data_name"]) 
-data = torch.load(path)
-X_test = data['X_test']
-y_test = data['y_test']
+# path = os.path.join(config["data_folder"], config["data_name"]) 
+# data = torch.load(path)
+# X_test = data['X_test']
+# y_test = data['y_test']
 
-is_image = config["is_image"] #!! change depending on data 
-num_classes = config["num_classes"]
-batch_size = config["batch_size"]
+# is_image = config["is_image"] #!! change depending on data 
+# num_classes = config["num_classes"]
+# batch_size = config["batch_size"]
 
-input_dim = X_test.shape[1:] #(c,h,w)
+# input_dim = X_test.shape[1:] #(c,h,w)
 
-# model_weights_path = "../models/model_minst_4.pth"
-# model = ReconstructionNet(input_dim,num_classes,is_image)
-# model.load_state_dict(torch.load(model_weights_path))
-# model.eval()
+# # model_weights_path = "../models/model_minst_4.pth"
+# # model = ReconstructionNet(input_dim,num_classes,is_image)
+# # model.load_state_dict(torch.load(model_weights_path))
+# # model.eval()
 
-test_dataset = TensorDataset(X_test, y_test)
-test_loader = DataLoader(test_dataset, batch_size=batch_size, shuffle=False)
+# test_dataset = TensorDataset(X_test, y_test)
+# test_loader = DataLoader(test_dataset, batch_size=batch_size, shuffle=False)
 
 # #pour une image aleatoire
 # with torch.no_grad():

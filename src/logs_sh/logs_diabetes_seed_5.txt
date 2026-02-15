@@ -1,0 +1,58 @@
+config :  config_diabetes.yaml
+numm_epochs :  40
+Epoch 01 | Loss: 0.6521 | Acc: 83.30%
+Epoch 02 | Loss: 0.4722 | Acc: 87.39%
+Epoch 03 | Loss: 0.4367 | Acc: 87.65%
+Epoch 04 | Loss: 0.4178 | Acc: 87.89%
+Epoch 05 | Loss: 0.4070 | Acc: 88.01%
+Epoch 06 | Loss: 0.4002 | Acc: 88.07%
+Epoch 07 | Loss: 0.3958 | Acc: 88.08%
+Epoch 08 | Loss: 0.3926 | Acc: 88.17%
+Epoch 09 | Loss: 0.3903 | Acc: 88.16%
+Epoch 10 | Loss: 0.3885 | Acc: 88.19%
+Epoch 11 | Loss: 0.3872 | Acc: 88.21%
+Epoch 12 | Loss: 0.3860 | Acc: 88.24%
+Epoch 13 | Loss: 0.3852 | Acc: 88.23%
+Epoch 14 | Loss: 0.3844 | Acc: 88.23%
+Epoch 15 | Loss: 0.3838 | Acc: 88.27%
+Epoch 16 | Loss: 0.3833 | Acc: 88.28%
+Epoch 17 | Loss: 0.3828 | Acc: 88.26%
+Epoch 18 | Loss: 0.3824 | Acc: 88.31%
+Epoch 19 | Loss: 0.3820 | Acc: 88.33%
+Epoch 20 | Loss: 0.3818 | Acc: 88.32%
+Epoch 21 | Loss: 0.3816 | Acc: 88.27%
+Epoch 22 | Loss: 0.3814 | Acc: 88.30%
+Epoch 23 | Loss: 0.3811 | Acc: 88.31%
+Epoch 24 | Loss: 0.3809 | Acc: 88.31%
+Epoch 25 | Loss: 0.3808 | Acc: 88.37%
+Epoch 26 | Loss: 0.3806 | Acc: 88.34%
+Epoch 27 | Loss: 0.3805 | Acc: 88.33%
+Epoch 28 | Loss: 0.3805 | Acc: 88.29%
+Epoch 29 | Loss: 0.3804 | Acc: 88.33%
+Epoch 30 | Loss: 0.3802 | Acc: 88.31%
+Epoch 31 | Loss: 0.3801 | Acc: 88.33%
+Epoch 32 | Loss: 0.3800 | Acc: 88.34%
+Epoch 33 | Loss: 0.3801 | Acc: 88.32%
+Epoch 34 | Loss: 0.3799 | Acc: 88.34%
+Epoch 35 | Loss: 0.3800 | Acc: 88.35%
+Epoch 36 | Loss: 0.3798 | Acc: 88.35%
+Epoch 37 | Loss: 0.3797 | Acc: 88.33%
+Epoch 38 | Loss: 0.3796 | Acc: 88.36%
+Epoch 39 | Loss: 0.3796 | Acc: 88.35%
+Epoch 40 | Loss: 0.3796 | Acc: 88.39%
+Test Accuracy: 0.8885
+
+Classification Report:
+               precision    recall  f1-score   support
+
+           0       0.99      0.89      0.94      9150
+           1       0.43      0.90      0.58       850
+
+    accuracy                           0.89     10000
+   macro avg       0.71      0.89      0.76     10000
+weighted avg       0.94      0.89      0.91     10000
+
+
+Confusion Matrix:
+ [[8120 1030]
+ [  85  765]]

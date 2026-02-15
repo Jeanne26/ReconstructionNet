@@ -1,0 +1,58 @@
+config :  config_diabetes.yaml
+numm_epochs :  40
+Epoch 01 | Loss: 0.5545 | Acc: 85.06%
+Epoch 02 | Loss: 0.4220 | Acc: 87.68%
+Epoch 03 | Loss: 0.4058 | Acc: 87.97%
+Epoch 04 | Loss: 0.3954 | Acc: 88.24%
+Epoch 05 | Loss: 0.3886 | Acc: 88.37%
+Epoch 06 | Loss: 0.3839 | Acc: 88.43%
+Epoch 07 | Loss: 0.3805 | Acc: 88.55%
+Epoch 08 | Loss: 0.3776 | Acc: 88.59%
+Epoch 09 | Loss: 0.3754 | Acc: 88.70%
+Epoch 10 | Loss: 0.3732 | Acc: 88.77%
+Epoch 11 | Loss: 0.3718 | Acc: 88.79%
+Epoch 12 | Loss: 0.3706 | Acc: 88.83%
+Epoch 13 | Loss: 0.3695 | Acc: 88.91%
+Epoch 14 | Loss: 0.3686 | Acc: 88.91%
+Epoch 15 | Loss: 0.3675 | Acc: 88.93%
+Epoch 16 | Loss: 0.3673 | Acc: 88.91%
+Epoch 17 | Loss: 0.3666 | Acc: 88.92%
+Epoch 18 | Loss: 0.3662 | Acc: 88.96%
+Epoch 19 | Loss: 0.3656 | Acc: 88.99%
+Epoch 20 | Loss: 0.3654 | Acc: 88.99%
+Epoch 21 | Loss: 0.3650 | Acc: 89.02%
+Epoch 22 | Loss: 0.3647 | Acc: 88.98%
+Epoch 23 | Loss: 0.3645 | Acc: 89.03%
+Epoch 24 | Loss: 0.3642 | Acc: 89.07%
+Epoch 25 | Loss: 0.3642 | Acc: 89.10%
+Epoch 26 | Loss: 0.3637 | Acc: 89.10%
+Epoch 27 | Loss: 0.3637 | Acc: 89.01%
+Epoch 28 | Loss: 0.3634 | Acc: 89.02%
+Epoch 29 | Loss: 0.3630 | Acc: 89.05%
+Epoch 30 | Loss: 0.3625 | Acc: 89.03%
+Epoch 31 | Loss: 0.3623 | Acc: 89.02%
+Epoch 32 | Loss: 0.3617 | Acc: 89.02%
+Epoch 33 | Loss: 0.3613 | Acc: 89.09%
+Epoch 34 | Loss: 0.3609 | Acc: 89.02%
+Epoch 35 | Loss: 0.3607 | Acc: 89.01%
+Epoch 36 | Loss: 0.3605 | Acc: 89.03%
+Epoch 37 | Loss: 0.3599 | Acc: 89.05%
+Epoch 38 | Loss: 0.3593 | Acc: 89.07%
+Epoch 39 | Loss: 0.3586 | Acc: 89.03%
+Epoch 40 | Loss: 0.3572 | Acc: 89.15%
+Test Accuracy: 0.897
+
+Classification Report:
+               precision    recall  f1-score   support
+
+           0       0.99      0.90      0.94      9150
+           1       0.45      0.90      0.60       850
+
+    accuracy                           0.90     10000
+   macro avg       0.72      0.90      0.77     10000
+weighted avg       0.94      0.90      0.91     10000
+
+
+Confusion Matrix:
+ [[8207  943]
+ [  87  763]]

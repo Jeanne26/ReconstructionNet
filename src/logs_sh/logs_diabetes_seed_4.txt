@@ -1,0 +1,58 @@
+config :  config_diabetes.yaml
+numm_epochs :  40
+Epoch 01 | Loss: 0.4769 | Acc: 86.34%
+Epoch 02 | Loss: 0.3795 | Acc: 88.47%
+Epoch 03 | Loss: 0.3731 | Acc: 88.58%
+Epoch 04 | Loss: 0.3674 | Acc: 88.65%
+Epoch 05 | Loss: 0.3619 | Acc: 88.72%
+Epoch 06 | Loss: 0.3576 | Acc: 88.77%
+Epoch 07 | Loss: 0.3537 | Acc: 88.82%
+Epoch 08 | Loss: 0.3505 | Acc: 88.83%
+Epoch 09 | Loss: 0.3480 | Acc: 88.95%
+Epoch 10 | Loss: 0.3464 | Acc: 89.11%
+Epoch 11 | Loss: 0.3451 | Acc: 89.24%
+Epoch 12 | Loss: 0.3411 | Acc: 89.37%
+Epoch 13 | Loss: 0.3357 | Acc: 89.37%
+Epoch 14 | Loss: 0.3349 | Acc: 89.44%
+Epoch 15 | Loss: 0.3340 | Acc: 89.46%
+Epoch 16 | Loss: 0.3330 | Acc: 89.45%
+Epoch 17 | Loss: 0.3318 | Acc: 89.52%
+Epoch 18 | Loss: 0.3303 | Acc: 89.55%
+Epoch 19 | Loss: 0.3283 | Acc: 89.62%
+Epoch 20 | Loss: 0.3253 | Acc: 89.69%
+Epoch 21 | Loss: 0.3222 | Acc: 89.66%
+Epoch 22 | Loss: 0.3191 | Acc: 89.73%
+Epoch 23 | Loss: 0.3170 | Acc: 89.70%
+Epoch 24 | Loss: 0.3145 | Acc: 89.68%
+Epoch 25 | Loss: 0.3118 | Acc: 89.62%
+Epoch 26 | Loss: 0.3091 | Acc: 89.64%
+Epoch 27 | Loss: 0.3044 | Acc: 89.82%
+Epoch 28 | Loss: 0.3023 | Acc: 89.87%
+Epoch 29 | Loss: 0.3010 | Acc: 89.87%
+Epoch 30 | Loss: 0.3002 | Acc: 89.91%
+Epoch 31 | Loss: 0.2995 | Acc: 89.95%
+Epoch 32 | Loss: 0.2991 | Acc: 89.89%
+Epoch 33 | Loss: 0.2988 | Acc: 89.95%
+Epoch 34 | Loss: 0.2982 | Acc: 89.91%
+Epoch 35 | Loss: 0.2974 | Acc: 89.91%
+Epoch 36 | Loss: 0.2959 | Acc: 89.99%
+Epoch 37 | Loss: 0.2907 | Acc: 90.12%
+Epoch 38 | Loss: 0.2866 | Acc: 90.23%
+Epoch 39 | Loss: 0.2853 | Acc: 90.26%
+Epoch 40 | Loss: 0.2848 | Acc: 90.30%
+Test Accuracy: 0.8924
+
+Classification Report:
+               precision    recall  f1-score   support
+
+           0       0.99      0.89      0.94      9150
+           1       0.44      0.93      0.59       850
+
+    accuracy                           0.89     10000
+   macro avg       0.72      0.91      0.77     10000
+weighted avg       0.95      0.89      0.91     10000
+
+
+Confusion Matrix:
+ [[8134 1016]
+ [  60  790]]
