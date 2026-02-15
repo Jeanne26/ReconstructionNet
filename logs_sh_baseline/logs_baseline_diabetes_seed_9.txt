@@ -1,0 +1,57 @@
+config :  config_baseline_diabetes.yaml
+Epoch 01 | Loss: 0.2859 | Acc: 87.41%
+Epoch 02 | Loss: 0.2405 | Acc: 88.78%
+Epoch 03 | Loss: 0.2221 | Acc: 89.45%
+Epoch 04 | Loss: 0.2119 | Acc: 89.90%
+Epoch 05 | Loss: 0.2048 | Acc: 90.21%
+Epoch 06 | Loss: 0.2020 | Acc: 90.35%
+Epoch 07 | Loss: 0.1991 | Acc: 90.41%
+Epoch 08 | Loss: 0.1974 | Acc: 90.52%
+Epoch 09 | Loss: 0.1954 | Acc: 90.58%
+Epoch 10 | Loss: 0.1946 | Acc: 90.70%
+Epoch 11 | Loss: 0.1938 | Acc: 90.70%
+Epoch 12 | Loss: 0.1929 | Acc: 90.76%
+Epoch 13 | Loss: 0.1926 | Acc: 90.72%
+Epoch 14 | Loss: 0.1919 | Acc: 90.81%
+Epoch 15 | Loss: 0.1915 | Acc: 90.82%
+Epoch 16 | Loss: 0.1918 | Acc: 90.85%
+Epoch 17 | Loss: 0.1910 | Acc: 90.88%
+Epoch 18 | Loss: 0.1904 | Acc: 90.92%
+Epoch 19 | Loss: 0.1901 | Acc: 90.91%
+Epoch 20 | Loss: 0.1891 | Acc: 90.94%
+Epoch 21 | Loss: 0.1893 | Acc: 90.98%
+Epoch 22 | Loss: 0.1893 | Acc: 90.93%
+Epoch 23 | Loss: 0.1889 | Acc: 91.01%
+Epoch 24 | Loss: 0.1887 | Acc: 91.01%
+Epoch 25 | Loss: 0.1876 | Acc: 91.02%
+Epoch 26 | Loss: 0.1875 | Acc: 91.05%
+Epoch 27 | Loss: 0.1869 | Acc: 91.03%
+Epoch 28 | Loss: 0.1872 | Acc: 91.03%
+Epoch 29 | Loss: 0.1872 | Acc: 91.03%
+Epoch 30 | Loss: 0.1868 | Acc: 91.06%
+Epoch 31 | Loss: 0.1866 | Acc: 91.05%
+Epoch 32 | Loss: 0.1858 | Acc: 91.14%
+Epoch 33 | Loss: 0.1861 | Acc: 91.09%
+Epoch 34 | Loss: 0.1859 | Acc: 91.08%
+Epoch 35 | Loss: 0.1857 | Acc: 91.11%
+Epoch 36 | Loss: 0.1853 | Acc: 91.07%
+Epoch 37 | Loss: 0.1853 | Acc: 91.14%
+Epoch 38 | Loss: 0.1848 | Acc: 91.13%
+Epoch 39 | Loss: 0.1843 | Acc: 91.13%
+Epoch 40 | Loss: 0.1841 | Acc: 91.16%
+Test Accuracy: 0.9044
+
+Classification Report:
+               precision    recall  f1-score   support
+
+           0       0.99      0.90      0.95      9150
+           1       0.47      0.91      0.62       850
+
+    accuracy                           0.90     10000
+   macro avg       0.73      0.91      0.78     10000
+weighted avg       0.95      0.90      0.92     10000
+
+
+Confusion Matrix:
+ [[8270  880]
+ [  76  774]]

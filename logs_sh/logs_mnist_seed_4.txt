@@ -1,0 +1,73 @@
+config :  config_mnist.yaml
+Epoch 01 | Loss: 1.2820 | Acc: 86.68%
+Epoch 02 | Loss: 0.4689 | Acc: 96.08%
+Epoch 03 | Loss: 0.3724 | Acc: 97.11%
+Epoch 04 | Loss: 0.2730 | Acc: 97.72%
+Epoch 05 | Loss: 0.2047 | Acc: 98.29%
+Epoch 06 | Loss: 0.1714 | Acc: 98.63%
+Epoch 07 | Loss: 0.1453 | Acc: 98.91%
+Epoch 08 | Loss: 0.1334 | Acc: 99.03%
+Epoch 09 | Loss: 0.1205 | Acc: 99.21%
+Epoch 10 | Loss: 0.1102 | Acc: 99.33%
+Epoch 11 | Loss: 0.1046 | Acc: 99.38%
+Epoch 12 | Loss: 0.1009 | Acc: 99.41%
+Epoch 13 | Loss: 0.0911 | Acc: 99.55%
+Epoch 14 | Loss: 0.0853 | Acc: 99.59%
+Epoch 15 | Loss: 0.0833 | Acc: 99.61%
+Epoch 16 | Loss: 0.0778 | Acc: 99.68%
+Epoch 17 | Loss: 0.0722 | Acc: 99.74%
+Epoch 18 | Loss: 0.0716 | Acc: 99.69%
+Epoch 19 | Loss: 0.0680 | Acc: 99.73%
+Epoch 20 | Loss: 0.0655 | Acc: 99.75%
+Epoch 21 | Loss: 0.0614 | Acc: 99.81%
+Epoch 22 | Loss: 0.0580 | Acc: 99.85%
+Epoch 23 | Loss: 0.0565 | Acc: 99.79%
+Epoch 24 | Loss: 0.0575 | Acc: 99.79%
+Epoch 25 | Loss: 0.0491 | Acc: 99.88%
+Epoch 26 | Loss: 0.0503 | Acc: 99.85%
+Epoch 27 | Loss: 0.0529 | Acc: 99.78%
+Epoch 28 | Loss: 0.0480 | Acc: 99.84%
+Epoch 29 | Loss: 0.0418 | Acc: 99.94%
+Epoch 30 | Loss: 0.0419 | Acc: 99.89%
+Epoch 31 | Loss: 0.0465 | Acc: 99.81%
+Epoch 32 | Loss: 0.0383 | Acc: 99.95%
+Epoch 33 | Loss: 0.0393 | Acc: 99.89%
+Epoch 34 | Loss: 0.0368 | Acc: 99.91%
+Epoch 35 | Loss: 0.0382 | Acc: 99.89%
+Epoch 36 | Loss: 0.0370 | Acc: 99.91%
+Epoch 37 | Loss: 0.0356 | Acc: 99.92%
+Epoch 38 | Loss: 0.0353 | Acc: 99.92%
+Epoch 39 | Loss: 0.0314 | Acc: 99.96%
+Epoch 40 | Loss: 0.0297 | Acc: 99.97%
+Test Accuracy: 0.9892
+
+Classification Report:
+               precision    recall  f1-score   support
+
+           0       0.99      1.00      0.99       980
+           1       0.99      1.00      0.99      1135
+           2       0.98      0.99      0.99      1032
+           3       0.99      0.99      0.99      1010
+           4       0.99      0.99      0.99       982
+           5       0.99      0.98      0.99       892
+           6       0.99      0.99      0.99       958
+           7       0.99      0.98      0.99      1028
+           8       0.99      0.99      0.99       974
+           9       0.99      0.98      0.98      1009
+
+    accuracy                           0.99     10000
+   macro avg       0.99      0.99      0.99     10000
+weighted avg       0.99      0.99      0.99     10000
+
+
+Confusion Matrix:
+ [[ 977    0    0    0    0    0    2    1    0    0]
+ [   0 1132    0    1    0    0    1    0    1    0]
+ [   2    1 1024    0    0    0    2    0    3    0]
+ [   0    0    2 1003    0    1    0    2    1    1]
+ [   0    2    1    0  972    0    2    0    0    5]
+ [   3    0    0    8    0  878    2    0    1    0]
+ [   2    3    0    0    2    1  949    0    1    0]
+ [   0    5    8    0    2    0    0 1010    1    2]
+ [   5    0    4    0    0    2    0    1  960    2]
+ [   1    1    1    2    8    2    0    4    3  987]]

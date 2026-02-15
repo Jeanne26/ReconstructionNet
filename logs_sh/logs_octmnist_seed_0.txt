@@ -1,0 +1,41 @@
+config :  config_octmnist.yaml
+Epoch 01 | Loss: 1.2505 | Acc: 69.57%
+Epoch 02 | Loss: 0.8518 | Acc: 79.06%
+Epoch 03 | Loss: 0.7558 | Acc: 81.88%
+Epoch 04 | Loss: 0.7091 | Acc: 82.94%
+Epoch 05 | Loss: 0.6739 | Acc: 83.68%
+Epoch 06 | Loss: 0.6419 | Acc: 84.13%
+Epoch 07 | Loss: 0.6078 | Acc: 84.70%
+Epoch 08 | Loss: 0.5854 | Acc: 84.80%
+Epoch 09 | Loss: 0.5545 | Acc: 85.28%
+Epoch 10 | Loss: 0.5394 | Acc: 85.51%
+Epoch 11 | Loss: 0.5185 | Acc: 85.84%
+Epoch 12 | Loss: 0.5077 | Acc: 86.04%
+Epoch 13 | Loss: 0.4941 | Acc: 86.27%
+Epoch 14 | Loss: 0.4801 | Acc: 86.45%
+Epoch 15 | Loss: 0.4758 | Acc: 86.57%
+Epoch 16 | Loss: 0.4684 | Acc: 86.70%
+Epoch 17 | Loss: 0.4613 | Acc: 86.92%
+Epoch 18 | Loss: 0.4562 | Acc: 86.99%
+Epoch 19 | Loss: 0.4514 | Acc: 87.06%
+Epoch 20 | Loss: 0.4468 | Acc: 87.27%
+Test Accuracy: 0.684
+
+Classification Report:
+               precision    recall  f1-score   support
+
+           0       0.65      0.93      0.76       250
+           1       0.93      0.61      0.73       250
+           2       0.84      0.25      0.38       250
+           3       0.59      0.95      0.73       250
+
+    accuracy                           0.68      1000
+   macro avg       0.75      0.68      0.65      1000
+weighted avg       0.75      0.68      0.65      1000
+
+
+Confusion Matrix:
+ [[232   7   3   8]
+ [ 64 152   5  29]
+ [ 55   4  62 129]
+ [  7   1   4 238]]

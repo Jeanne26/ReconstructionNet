@@ -1,0 +1,58 @@
+config :  config_diabetes.yaml
+numm_epochs :  40
+Epoch 01 | Loss: 0.5177 | Acc: 86.41%
+Epoch 02 | Loss: 0.4170 | Acc: 88.10%
+Epoch 03 | Loss: 0.4027 | Acc: 88.19%
+Epoch 04 | Loss: 0.3919 | Acc: 88.32%
+Epoch 05 | Loss: 0.3786 | Acc: 88.52%
+Epoch 06 | Loss: 0.3606 | Acc: 89.02%
+Epoch 07 | Loss: 0.3500 | Acc: 89.21%
+Epoch 08 | Loss: 0.3437 | Acc: 89.30%
+Epoch 09 | Loss: 0.3391 | Acc: 89.40%
+Epoch 10 | Loss: 0.3354 | Acc: 89.50%
+Epoch 11 | Loss: 0.3332 | Acc: 89.53%
+Epoch 12 | Loss: 0.3309 | Acc: 89.60%
+Epoch 13 | Loss: 0.3293 | Acc: 89.62%
+Epoch 14 | Loss: 0.3275 | Acc: 89.64%
+Epoch 15 | Loss: 0.3261 | Acc: 89.66%
+Epoch 16 | Loss: 0.3248 | Acc: 89.70%
+Epoch 17 | Loss: 0.3235 | Acc: 89.68%
+Epoch 18 | Loss: 0.3229 | Acc: 89.73%
+Epoch 19 | Loss: 0.3224 | Acc: 89.73%
+Epoch 20 | Loss: 0.3220 | Acc: 89.76%
+Epoch 21 | Loss: 0.3216 | Acc: 89.74%
+Epoch 22 | Loss: 0.3209 | Acc: 89.76%
+Epoch 23 | Loss: 0.3206 | Acc: 89.78%
+Epoch 24 | Loss: 0.3199 | Acc: 89.79%
+Epoch 25 | Loss: 0.3191 | Acc: 89.76%
+Epoch 26 | Loss: 0.3187 | Acc: 89.81%
+Epoch 27 | Loss: 0.3179 | Acc: 89.78%
+Epoch 28 | Loss: 0.3175 | Acc: 89.77%
+Epoch 29 | Loss: 0.3166 | Acc: 89.81%
+Epoch 30 | Loss: 0.3160 | Acc: 89.76%
+Epoch 31 | Loss: 0.3155 | Acc: 89.79%
+Epoch 32 | Loss: 0.3149 | Acc: 89.77%
+Epoch 33 | Loss: 0.3144 | Acc: 89.74%
+Epoch 34 | Loss: 0.3140 | Acc: 89.82%
+Epoch 35 | Loss: 0.3140 | Acc: 89.80%
+Epoch 36 | Loss: 0.3135 | Acc: 89.87%
+Epoch 37 | Loss: 0.3128 | Acc: 89.88%
+Epoch 38 | Loss: 0.3130 | Acc: 89.83%
+Epoch 39 | Loss: 0.3126 | Acc: 89.82%
+Epoch 40 | Loss: 0.3121 | Acc: 89.85%
+Test Accuracy: 0.8648
+
+Classification Report:
+               precision    recall  f1-score   support
+
+           0       0.99      0.86      0.92      9150
+           1       0.38      0.95      0.54       850
+
+    accuracy                           0.86     10000
+   macro avg       0.69      0.90      0.73     10000
+weighted avg       0.94      0.86      0.89     10000
+
+
+Confusion Matrix:
+ [[7841 1309]
+ [  43  807]]

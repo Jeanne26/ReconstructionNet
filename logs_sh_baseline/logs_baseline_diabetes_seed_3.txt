@@ -1,0 +1,57 @@
+config :  config_baseline_diabetes.yaml
+Epoch 01 | Loss: 0.2902 | Acc: 86.94%
+Epoch 02 | Loss: 0.2427 | Acc: 88.64%
+Epoch 03 | Loss: 0.2302 | Acc: 89.15%
+Epoch 04 | Loss: 0.2182 | Acc: 89.69%
+Epoch 05 | Loss: 0.2094 | Acc: 90.08%
+Epoch 06 | Loss: 0.2050 | Acc: 90.21%
+Epoch 07 | Loss: 0.2010 | Acc: 90.36%
+Epoch 08 | Loss: 0.2000 | Acc: 90.39%
+Epoch 09 | Loss: 0.1975 | Acc: 90.56%
+Epoch 10 | Loss: 0.1967 | Acc: 90.56%
+Epoch 11 | Loss: 0.1946 | Acc: 90.70%
+Epoch 12 | Loss: 0.1946 | Acc: 90.62%
+Epoch 13 | Loss: 0.1934 | Acc: 90.71%
+Epoch 14 | Loss: 0.1934 | Acc: 90.73%
+Epoch 15 | Loss: 0.1927 | Acc: 90.67%
+Epoch 16 | Loss: 0.1922 | Acc: 90.79%
+Epoch 17 | Loss: 0.1911 | Acc: 90.76%
+Epoch 18 | Loss: 0.1913 | Acc: 90.77%
+Epoch 19 | Loss: 0.1899 | Acc: 90.85%
+Epoch 20 | Loss: 0.1900 | Acc: 90.87%
+Epoch 21 | Loss: 0.1885 | Acc: 90.90%
+Epoch 22 | Loss: 0.1883 | Acc: 90.93%
+Epoch 23 | Loss: 0.1876 | Acc: 90.92%
+Epoch 24 | Loss: 0.1876 | Acc: 90.93%
+Epoch 25 | Loss: 0.1874 | Acc: 90.98%
+Epoch 26 | Loss: 0.1859 | Acc: 90.97%
+Epoch 27 | Loss: 0.1868 | Acc: 90.95%
+Epoch 28 | Loss: 0.1860 | Acc: 90.97%
+Epoch 29 | Loss: 0.1853 | Acc: 91.11%
+Epoch 30 | Loss: 0.1856 | Acc: 90.98%
+Epoch 31 | Loss: 0.1848 | Acc: 91.02%
+Epoch 32 | Loss: 0.1848 | Acc: 91.12%
+Epoch 33 | Loss: 0.1845 | Acc: 91.11%
+Epoch 34 | Loss: 0.1843 | Acc: 91.05%
+Epoch 35 | Loss: 0.1840 | Acc: 91.11%
+Epoch 36 | Loss: 0.1844 | Acc: 91.16%
+Epoch 37 | Loss: 0.1842 | Acc: 91.14%
+Epoch 38 | Loss: 0.1838 | Acc: 91.09%
+Epoch 39 | Loss: 0.1839 | Acc: 91.14%
+Epoch 40 | Loss: 0.1836 | Acc: 91.17%
+Test Accuracy: 0.9009
+
+Classification Report:
+               precision    recall  f1-score   support
+
+           0       0.99      0.90      0.94      9150
+           1       0.46      0.92      0.61       850
+
+    accuracy                           0.90     10000
+   macro avg       0.73      0.91      0.78     10000
+weighted avg       0.95      0.90      0.92     10000
+
+
+Confusion Matrix:
+ [[8228  922]
+ [  69  781]]

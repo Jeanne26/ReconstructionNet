@@ -1,0 +1,57 @@
+config :  config_baseline_diabetes.yaml
+Epoch 01 | Loss: 0.2931 | Acc: 86.97%
+Epoch 02 | Loss: 0.2519 | Acc: 88.39%
+Epoch 03 | Loss: 0.2384 | Acc: 88.85%
+Epoch 04 | Loss: 0.2262 | Acc: 89.49%
+Epoch 05 | Loss: 0.2168 | Acc: 89.84%
+Epoch 06 | Loss: 0.2104 | Acc: 90.11%
+Epoch 07 | Loss: 0.2052 | Acc: 90.24%
+Epoch 08 | Loss: 0.2033 | Acc: 90.33%
+Epoch 09 | Loss: 0.2009 | Acc: 90.40%
+Epoch 10 | Loss: 0.1999 | Acc: 90.37%
+Epoch 11 | Loss: 0.1982 | Acc: 90.49%
+Epoch 12 | Loss: 0.1967 | Acc: 90.55%
+Epoch 13 | Loss: 0.1959 | Acc: 90.52%
+Epoch 14 | Loss: 0.1957 | Acc: 90.59%
+Epoch 15 | Loss: 0.1950 | Acc: 90.63%
+Epoch 16 | Loss: 0.1945 | Acc: 90.66%
+Epoch 17 | Loss: 0.1943 | Acc: 90.68%
+Epoch 18 | Loss: 0.1937 | Acc: 90.72%
+Epoch 19 | Loss: 0.1926 | Acc: 90.70%
+Epoch 20 | Loss: 0.1929 | Acc: 90.80%
+Epoch 21 | Loss: 0.1930 | Acc: 90.71%
+Epoch 22 | Loss: 0.1923 | Acc: 90.74%
+Epoch 23 | Loss: 0.1917 | Acc: 90.81%
+Epoch 24 | Loss: 0.1913 | Acc: 90.86%
+Epoch 25 | Loss: 0.1904 | Acc: 90.85%
+Epoch 26 | Loss: 0.1897 | Acc: 90.92%
+Epoch 27 | Loss: 0.1903 | Acc: 90.89%
+Epoch 28 | Loss: 0.1890 | Acc: 90.93%
+Epoch 29 | Loss: 0.1900 | Acc: 90.85%
+Epoch 30 | Loss: 0.1890 | Acc: 90.87%
+Epoch 31 | Loss: 0.1888 | Acc: 90.90%
+Epoch 32 | Loss: 0.1882 | Acc: 90.92%
+Epoch 33 | Loss: 0.1885 | Acc: 90.93%
+Epoch 34 | Loss: 0.1880 | Acc: 91.03%
+Epoch 35 | Loss: 0.1879 | Acc: 90.91%
+Epoch 36 | Loss: 0.1882 | Acc: 90.94%
+Epoch 37 | Loss: 0.1882 | Acc: 91.00%
+Epoch 38 | Loss: 0.1867 | Acc: 90.93%
+Epoch 39 | Loss: 0.1872 | Acc: 90.94%
+Epoch 40 | Loss: 0.1861 | Acc: 91.00%
+Test Accuracy: 0.9225
+
+Classification Report:
+               precision    recall  f1-score   support
+
+           0       0.99      0.93      0.96      9150
+           1       0.53      0.88      0.66       850
+
+    accuracy                           0.92     10000
+   macro avg       0.76      0.90      0.81     10000
+weighted avg       0.95      0.92      0.93     10000
+
+
+Confusion Matrix:
+ [[8477  673]
+ [ 102  748]]

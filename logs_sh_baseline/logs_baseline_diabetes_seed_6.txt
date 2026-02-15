@@ -1,0 +1,57 @@
+config :  config_baseline_diabetes.yaml
+Epoch 01 | Loss: 0.2907 | Acc: 86.91%
+Epoch 02 | Loss: 0.2440 | Acc: 88.75%
+Epoch 03 | Loss: 0.2217 | Acc: 89.58%
+Epoch 04 | Loss: 0.2111 | Acc: 89.89%
+Epoch 05 | Loss: 0.2049 | Acc: 90.12%
+Epoch 06 | Loss: 0.2013 | Acc: 90.37%
+Epoch 07 | Loss: 0.1986 | Acc: 90.41%
+Epoch 08 | Loss: 0.1960 | Acc: 90.54%
+Epoch 09 | Loss: 0.1945 | Acc: 90.67%
+Epoch 10 | Loss: 0.1942 | Acc: 90.65%
+Epoch 11 | Loss: 0.1934 | Acc: 90.66%
+Epoch 12 | Loss: 0.1922 | Acc: 90.78%
+Epoch 13 | Loss: 0.1922 | Acc: 90.77%
+Epoch 14 | Loss: 0.1920 | Acc: 90.80%
+Epoch 15 | Loss: 0.1903 | Acc: 90.83%
+Epoch 16 | Loss: 0.1904 | Acc: 90.84%
+Epoch 17 | Loss: 0.1890 | Acc: 90.87%
+Epoch 18 | Loss: 0.1887 | Acc: 90.88%
+Epoch 19 | Loss: 0.1877 | Acc: 90.94%
+Epoch 20 | Loss: 0.1895 | Acc: 90.88%
+Epoch 21 | Loss: 0.1872 | Acc: 90.97%
+Epoch 22 | Loss: 0.1874 | Acc: 91.02%
+Epoch 23 | Loss: 0.1874 | Acc: 90.95%
+Epoch 24 | Loss: 0.1868 | Acc: 90.96%
+Epoch 25 | Loss: 0.1867 | Acc: 91.00%
+Epoch 26 | Loss: 0.1858 | Acc: 91.00%
+Epoch 27 | Loss: 0.1850 | Acc: 91.04%
+Epoch 28 | Loss: 0.1855 | Acc: 91.05%
+Epoch 29 | Loss: 0.1851 | Acc: 91.12%
+Epoch 30 | Loss: 0.1847 | Acc: 91.12%
+Epoch 31 | Loss: 0.1850 | Acc: 91.02%
+Epoch 32 | Loss: 0.1849 | Acc: 91.12%
+Epoch 33 | Loss: 0.1845 | Acc: 91.08%
+Epoch 34 | Loss: 0.1846 | Acc: 91.01%
+Epoch 35 | Loss: 0.1835 | Acc: 91.12%
+Epoch 36 | Loss: 0.1837 | Acc: 91.17%
+Epoch 37 | Loss: 0.1839 | Acc: 91.11%
+Epoch 38 | Loss: 0.1839 | Acc: 91.13%
+Epoch 39 | Loss: 0.1843 | Acc: 91.07%
+Epoch 40 | Loss: 0.1839 | Acc: 91.09%
+Test Accuracy: 0.9262
+
+Classification Report:
+               precision    recall  f1-score   support
+
+           0       0.99      0.93      0.96      9150
+           1       0.54      0.88      0.67       850
+
+    accuracy                           0.93     10000
+   macro avg       0.76      0.90      0.81     10000
+weighted avg       0.95      0.93      0.93     10000
+
+
+Confusion Matrix:
+ [[8515  635]
+ [ 103  747]]

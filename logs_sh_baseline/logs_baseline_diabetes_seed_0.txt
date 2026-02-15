@@ -1,0 +1,57 @@
+config :  config_baseline_diabetes.yaml
+Epoch 01 | Loss: 0.2861 | Acc: 87.23%
+Epoch 02 | Loss: 0.2396 | Acc: 88.86%
+Epoch 03 | Loss: 0.2274 | Acc: 89.35%
+Epoch 04 | Loss: 0.2162 | Acc: 89.69%
+Epoch 05 | Loss: 0.2084 | Acc: 90.05%
+Epoch 06 | Loss: 0.2031 | Acc: 90.28%
+Epoch 07 | Loss: 0.1998 | Acc: 90.35%
+Epoch 08 | Loss: 0.1978 | Acc: 90.47%
+Epoch 09 | Loss: 0.1957 | Acc: 90.51%
+Epoch 10 | Loss: 0.1947 | Acc: 90.59%
+Epoch 11 | Loss: 0.1935 | Acc: 90.62%
+Epoch 12 | Loss: 0.1933 | Acc: 90.68%
+Epoch 13 | Loss: 0.1929 | Acc: 90.66%
+Epoch 14 | Loss: 0.1922 | Acc: 90.63%
+Epoch 15 | Loss: 0.1923 | Acc: 90.72%
+Epoch 16 | Loss: 0.1908 | Acc: 90.73%
+Epoch 17 | Loss: 0.1905 | Acc: 90.73%
+Epoch 18 | Loss: 0.1898 | Acc: 90.79%
+Epoch 19 | Loss: 0.1892 | Acc: 90.86%
+Epoch 20 | Loss: 0.1885 | Acc: 90.91%
+Epoch 21 | Loss: 0.1880 | Acc: 90.90%
+Epoch 22 | Loss: 0.1879 | Acc: 90.89%
+Epoch 23 | Loss: 0.1881 | Acc: 90.91%
+Epoch 24 | Loss: 0.1879 | Acc: 90.85%
+Epoch 25 | Loss: 0.1872 | Acc: 90.94%
+Epoch 26 | Loss: 0.1862 | Acc: 90.96%
+Epoch 27 | Loss: 0.1865 | Acc: 90.85%
+Epoch 28 | Loss: 0.1862 | Acc: 90.96%
+Epoch 29 | Loss: 0.1861 | Acc: 90.95%
+Epoch 30 | Loss: 0.1849 | Acc: 91.02%
+Epoch 31 | Loss: 0.1856 | Acc: 91.02%
+Epoch 32 | Loss: 0.1850 | Acc: 91.00%
+Epoch 33 | Loss: 0.1847 | Acc: 91.05%
+Epoch 34 | Loss: 0.1851 | Acc: 91.06%
+Epoch 35 | Loss: 0.1842 | Acc: 91.04%
+Epoch 36 | Loss: 0.1840 | Acc: 91.09%
+Epoch 37 | Loss: 0.1835 | Acc: 91.11%
+Epoch 38 | Loss: 0.1840 | Acc: 91.03%
+Epoch 39 | Loss: 0.1837 | Acc: 91.10%
+Epoch 40 | Loss: 0.1833 | Acc: 91.08%
+Test Accuracy: 0.8919
+
+Classification Report:
+               precision    recall  f1-score   support
+
+           0       0.99      0.89      0.94      9150
+           1       0.44      0.93      0.59       850
+
+    accuracy                           0.89     10000
+   macro avg       0.71      0.91      0.77     10000
+weighted avg       0.95      0.89      0.91     10000
+
+
+Confusion Matrix:
+ [[8129 1021]
+ [  60  790]]
