@@ -27,7 +27,7 @@ batch_size = config["batch_size"]
 
 input_dim = X_test.shape[1:] #(c,h,w)
 
-model_weights_path = "../models/model_minst_18.pth"
+model_weights_path = "../models/model_minst_33.pth"
 model = ReconstructionNet(input_dim,num_classes,is_image)
 model.load_state_dict(torch.load(model_weights_path))
 model.eval()
@@ -85,6 +85,7 @@ for i in range(len(images)):
     maxr = torch.max(wre)
     wre = (wre - minr)/(maxr-minr)
     mask_recons = torch.where(wre>0.7,0,1)
+
 
     axes[i,1].imshow(image.reshape(28,28), cmap='gray')
     axes[i,1].imshow(mask_recons.reshape(28,28), cmap = "Set1",alpha=0.5)

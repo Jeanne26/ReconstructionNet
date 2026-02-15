@@ -11,14 +11,21 @@ import argparse
 from torch.utils.tensorboard import SummaryWriter
 from figure_1b import make_figure
 import matplotlib.pyplot as plt
+from sklearn.metrics import roc_auc_score
+import random
 
 
 #exemple pour lancer le code: python3 train_test_diabetes.py  --config config_diabetes.yaml
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--config', type=str, default='config_mnist.yaml', help='Path to the config file')
+parser.add_argument('--seed', type=int, default=42)
 args = parser.parse_args()
-
+seed = args.seed
+random.seed(seed)
+np.random.seed(seed)
+torch.manual_seed(seed)
+torch.cuda.manual_seed_all(seed)
 config_name = args.config
 print("config : ", config_name)
 CONFIG_PATH = '../configs/'
@@ -84,21 +91,7 @@ dataset = TensorDataset(X_train, y_train)
 loader_recNet = DataLoader(dataset, batch_size=batch_size, shuffle=True) #essayer avec batch size 32
 
 rec_Net = ReconstructionNet(input_dim,num_classes, is_image).to(device)# # Make sur of is_image at the top of this file !!
-# optimizer_recNet = optim.Adam(rec_Net.parameters(), lr=lr_recNet, weight_decay=weight_decay)
-
-#def des optimizers on separe pour les poids et les autoencodeurs pour pouvoir faire des pas de descente differents
-#cas image
-if is_image:
-    ae_params = list(rec_Net.encoder.parameters()) + list(rec_Net.decoders.parameters())
-    optimizer_ae = torch.optim.Adam(ae_params, lr=lr_recNet)
-#cas tabulaire    
-else : 
-    ae_params = []
-    for ae in rec_Net.autoencoders:
-        ae_params += list(ae.parameters())
-
-    optimizer_ae = torch.optim.Adam(ae_params, lr=lr_recNet)
-optimizer_weights = torch.optim.Adam([rec_Net.weights], lr=lr_recNet)
+optimizer_recNet = optim.Adam(rec_Net.parameters(), lr=lr_recNet, weight_decay=weight_decay)
 criterion = nn.CrossEntropyLoss()
 
 test_dataset = TensorDataset(X_test, y_test)
@@ -129,7 +122,7 @@ def evaluate_recnet(model, dataloader, device, step,plot_grid = False):
     model.eval()
     all_preds = []
     all_labels = []
-
+    all_probs = []
     with torch.no_grad():
         for x, y in dataloader:
             x = x.to(device)
@@ -140,11 +133,14 @@ def evaluate_recnet(model, dataloader, device, step,plot_grid = False):
 
             all_preds.append(preds)
             all_labels.append(y)
+            all_probs.append(logits.softmax(dim=1))
 
     all_preds = torch.cat(all_preds).cpu().numpy()
     all_labels = torch.cat(all_labels).cpu().numpy()
+    all_probs = torch.cat(all_probs).cpu().numpy()
 
     acc = accuracy_score(all_labels, all_preds)
+    auc = roc_auc_score(all_labels, all_probs, multi_class='ovr')
     report = classification_report(all_labels, all_preds)
     cm = confusion_matrix(all_labels, all_preds)
     
@@ -156,12 +152,12 @@ def evaluate_recnet(model, dataloader, device, step,plot_grid = False):
             probs,r_list,wre = model(x)
             #dans model modif r_list contient plus les erreurs de reconstruction mais directement les image reconstruites
             recons_per_class[y] = [r_list[c].cpu().detach() for c in range(num_classes)]
-        make_figure(images_per_class,recons_per_class)
+        make_figure(images_per_class,recons_per_class,num_classes)
         fig = plt.gcf()
         writer.add_figure('RecNet/reconstructions_grid', fig, global_step=step)
         plt.close(fig)
 
-    return acc, report, cm
+    return acc,auc, report, cm
 
 
 
@@ -175,8 +171,8 @@ for ep in range(num_epochs_recNet):
         batch = batch.to(device)
         labels = labels.to(device)
 
-        optimizer_ae.zero_grad()
-        optimizer_weights.zero_grad()
+
+        optimizer_recNet.zero_grad()
 
         logits, r_list, wre = rec_Net(batch)
 
@@ -185,9 +181,8 @@ for ep in range(num_epochs_recNet):
 
         loss = ce_loss + beta * mse_loss
         loss.backward()
-    
-        optimizer_ae.step()
-        optimizer_weights.step()
+
+        optimizer_recNet.step()
 
         train_loss += loss.item()
 
@@ -202,9 +197,10 @@ for ep in range(num_epochs_recNet):
     
     print(f"Epoch {ep+1:02d} | Loss: {avg_loss:.4f} | Acc: {accuracy:.2f}%")
     
-    
-    test_acc, test_report, test_cm = evaluate_recnet(rec_Net, test_loader, device,step =ep, plot_grid=True)
-    writer.add_scalar('RecNet/test_accuracy_epoch', test_acc, ep)
+    if (ep+1) % 5 == 0:
+        test_acc, test_auc,test_report, test_cm = evaluate_recnet(rec_Net, test_loader, device,step =ep, plot_grid=True)
+        writer.add_scalar('RecNet/test_accuracy_epoch', test_acc, ep)
+        writer.add_scalar('RecNet/test_auc_epoch', test_auc, ep)
     
     
     

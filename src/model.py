@@ -25,6 +25,11 @@ class ReconstructionNet(nn.Module):
         self.weights = nn.Parameter(torch.ones(num_class, self.flat_dim))
 
     def forward(self,x):
+        #ajout d'une dimension batch si nécessaire
+        if x.dim() == 3 and self.is_image:
+            x = x.unsqueeze(0)
+        elif x.dim() == 1 and not self.is_image:
+            x = x.unsqueeze(0)
         #reconstructed list
         r_list = []
         #weighted reconstruction error list
@@ -58,7 +63,7 @@ class ReconstructionNet(nn.Module):
                 reconstruction_error = (reconstructed-x_copy)**2 # removed sqrt
 
                 #weighted_reconstruction_error = self.dense_layers[i](reconstruction_error)
-                r_list.append(reconstruction_error)
+                r_list.append(reconstructed)
 
                 error_flat = reconstruction_error
 
@@ -86,9 +91,13 @@ class EncoderImage(nn.Module):
             nn.Conv2d(8, 16, 3, stride=2,padding=1),
             nn.ReLU()
         )
-
+        self.flatten = nn.Flatten()
+        self.fc = nn.Linear(16*7*7,32)
     def forward(self,x):
-        return self.model(x)
+        x = self.model(x)
+        x = self.flatten(x)
+        x = self.fc(x)
+        return x
 
 class DecoderImage(nn.Module):
     def __init__(self,input_dim):
@@ -100,11 +109,15 @@ class DecoderImage(nn.Module):
             nn.ConvTranspose2d(8, c, 3, stride=2,padding=1,output_padding=1),
             nn.Sigmoid()
             )
+        self.fc = nn.Linear(32, 16*7*7)
         
     def forward(self,x):
-        return self.model(x)
+        x = self.fc(x)
+        x = x.view(-1, 16, 7, 7)
+        x = self.model(x)
+        return x
     
-#ancion encoder fonctionne pour tabulaire (et les images aussi mais on preferea l'encoder specifique EncoderImage)
+#ancion encoder fonctionne pour tabulaire (et les images aussi mais on prefera l'encoder specifique EncoderImage)
 class Encoder(nn.Module):
     def __init__(self,input_dim):
         super().__init__()

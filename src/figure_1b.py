@@ -72,7 +72,7 @@ test_loader = DataLoader(test_dataset, batch_size=batch_size, shuffle=False)
 
 
 
-def make_figure(images_per_class,recons_per_class):
+def make_figure(images_per_class,recons_per_class,num_classes):
     fig, axes = plt.subplots(num_classes, num_classes+1,figsize=(2*(num_classes+1), 2*num_classes))
     for row in range(num_classes):
         image = images_per_class[row]
@@ -82,6 +82,8 @@ def make_figure(images_per_class,recons_per_class):
 
         for col in range(num_classes):
             recons = recons_per_class[row][col]
+            #parce que pour les images pas dans des batch le forward rajoute une dim donc on doit la retirer 
+            recons = recons.squeeze(0) if recons.dim() == 4 else recons
             axes[row, col+1].imshow(
                 recons.permute(1,2,0).cpu().numpy())
             axes[row,col+1].axis('off')
